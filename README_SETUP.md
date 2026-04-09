@@ -13,7 +13,7 @@ Open `http://localhost:3000`.
 
 Copy `.env.example` to `.env.local` and set:
 
-- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_URL` — full URL including `https://` (e.g. `https://xxxx.supabase.co`; a malformed value is ignored so the audit form still works without DB writes)
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `PAGESPEED_API_KEY`
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` (GA4, e.g. `G-XXXXXXXXXX`)

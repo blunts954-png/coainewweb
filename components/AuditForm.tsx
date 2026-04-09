@@ -54,35 +54,77 @@ export function AuditForm() {
   }
 
   return (
-    <section className="panel">
-      <form action={onSubmit} className="grid">
-        <div>
-          <label className="mono field-label" htmlFor="url-input">Website URL</label>
-          <input id="url-input" type="url" name="url" placeholder="https://yourdomain.com" required />
-        </div>
-        <div>
-          <label className="mono field-label" htmlFor="company-input">Business Name (Optional)</label>
-          <input id="company-input" type="text" name="companyName" placeholder="Company / DBA" />
-        </div>
-        <div>
-          <label className="mono field-label" htmlFor="phone-input">Phone Number</label>
-          <input id="phone-input" type="tel" name="phone" placeholder="(661) 610-9198" required />
-        </div>
-        <div>
-          <label className="mono field-label" htmlFor="email-input">Email</label>
-          <input id="email-input" type="email" name="email" placeholder="you@company.com" required />
+    <section className="panel audit-form-panel">
+      <form action={onSubmit} className="audit-form">
+        <div className="audit-form-fields">
+          <div className="audit-field">
+            <label className="mono field-label" htmlFor="url-input">
+              Website URL
+            </label>
+            <input
+              id="url-input"
+              type="url"
+              name="url"
+              placeholder="https://yourdomain.com"
+              autoComplete="url"
+              inputMode="url"
+              required
+            />
+          </div>
+          <div className="audit-field">
+            <label className="mono field-label" htmlFor="company-input">
+              Business Name (Optional)
+            </label>
+            <input
+              id="company-input"
+              type="text"
+              name="companyName"
+              placeholder="Company / DBA"
+              autoComplete="organization"
+            />
+          </div>
+          <div className="audit-field">
+            <label className="mono field-label" htmlFor="phone-input">
+              Phone Number
+            </label>
+            <input
+              id="phone-input"
+              type="tel"
+              name="phone"
+              placeholder="(661) 610-9198"
+              autoComplete="tel"
+              inputMode="tel"
+              required
+            />
+          </div>
+          <div className="audit-field">
+            <label className="mono field-label" htmlFor="email-input">
+              Email
+            </label>
+            <input
+              id="email-input"
+              type="email"
+              name="email"
+              placeholder="you@company.com"
+              autoComplete="email"
+              inputMode="email"
+              required
+            />
+          </div>
         </div>
         <input type="text" name="website" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
         <input type="hidden" name="startedAt" value={String(startedAt)} />
-        <button
-          disabled={loading}
-          className="btn btn-primary"
-          type="submit"
-          onMouseEnter={() => setHoveringCta(true)}
-          onMouseLeave={() => setHoveringCta(false)}
-        >
-          {loading ? "Running structural audit..." : "Run RedScreen Audit"}
-        </button>
+        <div className="audit-form-actions">
+          <button
+            disabled={loading}
+            className="btn btn-primary audit-form-submit"
+            type="submit"
+            onMouseEnter={() => setHoveringCta(true)}
+            onMouseLeave={() => setHoveringCta(false)}
+          >
+            {loading ? "Running structural audit..." : "Run RedScreen Audit"}
+          </button>
+        </div>
       </form>
       <div className="status-terminal">
         <div className="status-label">System Status</div>

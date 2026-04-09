@@ -1,4 +1,5 @@
 :root {
+  color-scheme: dark;
   --bg: #050505;
   --bg-1: #0b0b0b;
   --panel: rgba(15, 15, 15, 0.82);
@@ -9,6 +10,9 @@
   --accent: #00ff64;
   --accent-muted: #4acb78;
   --accent-signal: #78ff9f;
+  --input-bg: #060a0c;
+  --input-bg-focus: #030605;
+  --input-text: #e8fff0;
   --danger: #ff5d5d;
   --radius: 12px;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -155,19 +159,85 @@ a:focus-visible {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid #2a2a2a;
-  background: #0a1116;
-  color: var(--text);
+  background: var(--input-bg);
+  color: var(--input-text);
   border-radius: 10px;
-  padding: 0.72rem;
-  transition: border-color var(--t-fast) var(--ease-standard), box-shadow var(--t-fast) var(--ease-standard);
+  padding: 0.72rem 0.85rem;
+  font-size: 0.95rem;
+  transition:
+    border-color var(--t-fast) var(--ease-standard),
+    box-shadow var(--t-fast) var(--ease-standard),
+    background-color var(--t-fast) var(--ease-standard),
+    color var(--t-fast) var(--ease-standard);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7a72;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border-color: var(--accent-muted);
+  background: var(--input-bg-focus) !important;
+  color: var(--accent-signal) !important;
+  outline: none;
+}
+
+/* Kill browser autofill “white flash” and keep dark + green text */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--accent-signal) !important;
+  caret-color: var(--accent);
+  box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  transition: background-color 99999s ease-out;
+}
+
+input:autofill,
+textarea:autofill {
+  box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+}
+
+.audit-form-panel {
+  padding: 1.35rem 1.25rem 1.25rem;
+}
+
+.audit-form-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 1.75rem;
+  margin-bottom: 1.35rem;
+}
+
+@media (max-width: 720px) {
+  .audit-form-fields {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+}
+
+.audit-field {
+  min-width: 0;
+}
+
+.audit-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.audit-form-submit {
+  min-width: min(100%, 320px);
+  flex: 1 1 auto;
 }
 
 .field-label {
@@ -356,17 +426,29 @@ textarea:focus {
   border-color: rgba(0, 255, 100, 0.24);
   position: relative;
   overflow: hidden;
-  min-height: 230px;
+  min-height: min(52vw, 420px);
+  padding: 1.25rem 1.25rem 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.hero-visual > .muted {
+  display: block;
+  max-width: 52ch;
+  margin-bottom: 0.75rem;
+  line-height: 1.55;
 }
 
 .hero-visual-canvas-wrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 86px;
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  height: clamp(240px, 32vw, 340px);
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 100, 0.12);
+  background: radial-gradient(ellipse 80% 60% at 58% 45%, rgba(0, 40, 20, 0.35), rgba(0, 0, 0, 0.5));
   pointer-events: none;
-  opacity: 0.95;
+  opacity: 1;
 }
 
 .breach-canvas {

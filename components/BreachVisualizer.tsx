@@ -71,7 +71,8 @@ export function BreachVisualizer({ intensity = 1 }: BreachVisualizerProps) {
       for (let i = 0; i < layers.length; i += 1) {
         const y = stackTop + (i / layers.length) * stackHeight;
         const layerAlpha = layers[i].alpha;
-        ctx.strokeStyle = `rgba(0, 255, 100, ${layerAlpha})`;
+        const strokeA = Math.min(0.55, layerAlpha + 0.12);
+        ctx.strokeStyle = `rgba(0, 255, 100, ${strokeA})`;
         ctx.lineWidth = 1;
 
         const jitter = Math.sin(t * 1.2 + i) * 2;
@@ -80,10 +81,11 @@ export function BreachVisualizer({ intensity = 1 }: BreachVisualizerProps) {
         ctx.lineTo(w * 0.88, y - jitter);
         ctx.stroke();
 
-        // Small “code tokens” on each layer
-        ctx.fillStyle = `rgba(0,255,100,${Math.max(0.03, layerAlpha * 0.5)})`;
-        ctx.font = "12px monospace";
-        ctx.fillText(`schema_${i}`, w * 0.14, y + 6);
+        // Small “code tokens” on each layer (legible on dark bg)
+        const labelA = Math.max(0.38, Math.min(0.72, layerAlpha + 0.28));
+        ctx.fillStyle = `rgba(180, 255, 210, ${labelA})`;
+        ctx.font = "600 11px ui-monospace, monospace";
+        ctx.fillText(`schema_${i}`, w * 0.14, y + 5);
       }
 
       // Breach portal
