@@ -1,15 +1,30 @@
 import type { Metadata } from "next";
-import { TrackedLink } from "@/components/TrackedLink";
+import Link from "next/link";
+import { ContactMarketingForm } from "@/components/contact/ContactMarketingForm";
+import { JsonLd } from "@/components/JsonLd";
+import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbJsonLd } from "@/lib/schema";
-import { JsonLd } from "@/components/JsonLd";
-import { BUSINESS_HOURS_LABEL, CONTACT, GOOGLE_BUSINESS_PROFILE_URL, LEGAL_NAME } from "@/lib/site";
+import { CONTACT, GOOGLE_BUSINESS_PROFILE_URL, LEGAL_NAME } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact — Bakersfield Office",
-  description: `Call ${CONTACT.phoneDisplay}, email ${CONTACT.email}, or use our Google Business Profile for directions and hours. ${CONTACT.addressLine}, ${CONTACT.city}, ${CONTACT.region}.`,
+  description: `Call ${CONTACT.phoneDisplay}, email ${CONTACT.email}, or send a message. ${CONTACT.addressLine}, ${CONTACT.city}, ${CONTACT.region}.`,
   path: "/contact"
 });
+
+const TICKER = [
+  "CONTACT",
+  CONTACT.phoneDisplay,
+  "BAKERSFIELD CA",
+  "SAME-DAY RESPONSE",
+  "CIPHER LIVE 24/7",
+  "CONTACT",
+  CONTACT.phoneDisplay,
+  "BAKERSFIELD CA",
+  "SAME-DAY RESPONSE",
+  "CIPHER LIVE 24/7"
+];
 
 export default function ContactPage() {
   const contactPage = {
@@ -24,48 +39,104 @@ export default function ContactPage() {
   ]);
 
   return (
-    <main className="panel">
+    <MarketingLayout tickerItems={TICKER} activeHref="/contact">
       <JsonLd data={contactPage} />
       <JsonLd data={crumbs} />
-      <h1>Direct Line</h1>
-      <p>
-        <strong>{LEGAL_NAME}</strong>
-      </p>
-      <p>
-        Email:{" "}
-        <TrackedLink href={`mailto:${CONTACT.email}`} eventName="contact_email_click">
-          {CONTACT.email}
-        </TrackedLink>
-      </p>
-      <p>
-        Phone:{" "}
-        <TrackedLink href={`tel:${CONTACT.phoneE164}`} eventName="contact_phone_click">
-          {CONTACT.phoneDisplay}
-        </TrackedLink>
-      </p>
-      <p>
-        {CONTACT.addressLine}, {CONTACT.city}, {CONTACT.region} {CONTACT.postalCode}
-      </p>
-      <section className="panel" style={{ marginTop: "1rem" }}>
-        <h2 className="mono" style={{ marginTop: 0 }}>
-          Google Business Profile
-        </h2>
-        <p>
-          Hours: {BUSINESS_HOURS_LABEL}. Reviews, directions, and posts live on our public profile.
-        </p>
-        <p style={{ marginBottom: 0 }}>
-          <TrackedLink
-            className="btn btn-primary"
-            href={GOOGLE_BUSINESS_PROFILE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            eventName="contact_gbp_click"
-          >
-            Open Google Business Profile
-          </TrackedLink>
-        </p>
-      </section>
-      <p className="muted">Every request routes to structural audit workflow first.</p>
-    </main>
+
+      <div className="m-page-hero">
+        <div className="m-grid-bg" aria-hidden />
+        <div className="m-page-hero-inner">
+          <div className="m-section-label">Get In Touch</div>
+          <h1 className="m-page-h1">
+            No gatekeepers.
+            <br />
+            <span className="m-text-green">Direct line to Jason.</span>
+          </h1>
+          <p className="m-hero-sub">
+            Call, text, or send a message. Same-day response guaranteed. If you&apos;re outside business hours, Cipher
+            handles the first contact — Jason follows up personally.
+          </p>
+        </div>
+      </div>
+
+      <div className="m-contact-layout">
+        <div className="m-contact-info">
+          <div className="m-info-block">
+            <div className="m-info-block-label">Direct Contact</div>
+            <div className="m-info-line">
+              <span className="m-info-icon">☎</span>
+              <span className="m-info-text">
+                <Link href={`tel:${CONTACT.phoneE164}`}>{CONTACT.phoneDisplay}</Link>
+              </span>
+            </div>
+            <div className="m-info-line">
+              <span className="m-info-icon">@</span>
+              <span className="m-info-text">
+                <Link href={`mailto:${CONTACT.email}`}>{CONTACT.email}</Link>
+              </span>
+            </div>
+            <div className="m-info-line">
+              <span className="m-info-icon">◉</span>
+              <span className="m-info-text">
+                {CONTACT.addressLine}, {CONTACT.city}, {CONTACT.region} {CONTACT.postalCode}
+              </span>
+            </div>
+          </div>
+
+          <div className="m-cipher-box">
+            <div className="m-cipher-box-label">
+              <span className="m-cipher-dot" />
+              Cipher AI — Live 24/7
+            </div>
+            <p>
+              After-hours? Cipher picks up immediately, qualifies your inquiry, and routes to Jason for a
+              same-business-day follow-up. Call anytime.
+            </p>
+            <Link href={`tel:${CONTACT.phoneE164}`}>{CONTACT.phoneDisplay}</Link>
+          </div>
+
+          <div className="m-info-block">
+            <div className="m-info-block-label">Business Hours</div>
+            <div className="m-hours-grid">
+              <span className="m-hours-day">Monday</span>
+              <span className="m-hours-time">9AM – 6PM</span>
+              <span className="m-hours-day">Tuesday</span>
+              <span className="m-hours-time">9AM – 6PM</span>
+              <span className="m-hours-day">Wednesday</span>
+              <span className="m-hours-time">9AM – 6PM</span>
+              <span className="m-hours-day">Thursday</span>
+              <span className="m-hours-time">9AM – 6PM</span>
+              <span className="m-hours-day">Friday</span>
+              <span className="m-hours-time">9AM – 5PM</span>
+              <span className="m-hours-day">Saturday</span>
+              <span className="m-hours-time">By Appointment</span>
+              <span className="m-hours-day">Sunday</span>
+              <span className="m-hours-time">Closed</span>
+            </div>
+            <div style={{ marginTop: "1rem", fontFamily: "var(--font-mono), monospace", fontSize: 10, color: "var(--m-green)" }}>
+              Cipher active 24/7 for after-hours inquiries
+            </div>
+          </div>
+
+          <div className="m-info-block">
+            <div className="m-info-block-label">Verify Us</div>
+            <div className="m-info-line">
+              <span className="m-info-icon">G</span>
+              <span className="m-info-text">
+                <Link href={GOOGLE_BUSINESS_PROFILE_URL} target="_blank" rel="noopener noreferrer">
+                  Google Business Profile →
+                </Link>
+              </span>
+            </div>
+            <div className="m-info-line">
+              <span className="m-info-icon">◈</span>
+              <span className="m-info-text">{LEGAL_NAME} — registered California LLC</span>
+            </div>
+          </div>
+        </div>
+
+        <ContactMarketingForm />
+      </div>
+    </MarketingLayout>
   );
 }

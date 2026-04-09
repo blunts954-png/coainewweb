@@ -9,9 +9,11 @@ const LINKS = [
   { href: "/services", label: "Services" },
   { href: "/website-design", label: "Web Design" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/portfolio", label: "Case Studies" },
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" }
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/jax", label: "JAX" }
 ];
 
 type MarketingNavProps = {

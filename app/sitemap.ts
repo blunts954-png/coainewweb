@@ -4,18 +4,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://chaoticallyorganizedai.com";
   return [
     "/",
-    "/pricing",
-    "/intake",
-    "/portfolio",
-    "/dashboard",
-    "/jax-coming-soon",
-    "/website-design",
     "/services",
-    "/case-studies",
-    "/register",
-    "/contact",
+    "/website-design",
+    "/pricing",
+    "/portfolio",
     "/faq",
     "/about",
+    "/contact",
+    "/intake",
+    "/jax",
     "/privacy",
     "/terms"
   ].map((path) => ({

@@ -325,7 +325,7 @@ export function LandingHome() {
               Generate My Growth Roadmap →
             </Link>
             <Link href="/portfolio" className="lp-btn-secondary">
-              See Case Studies
+              View Portfolio
             </Link>
           </div>
         </div>
@@ -370,16 +370,16 @@ export function LandingHome() {
             <h4>Company</h4>
             <ul>
               <li>
-                <Link href="/portfolio">Case Studies</Link>
+                <Link href="/portfolio">Portfolio</Link>
               </li>
               <li>
                 <Link href="/about">About</Link>
               </li>
               <li>
-                <Link href="/case-studies">Resources</Link>
+                <Link href="/faq">FAQ</Link>
               </li>
               <li>
-                <Link href="/jax-coming-soon">JAX Preview</Link>
+                <Link href="/jax">JAX</Link>
               </li>
             </ul>
           </div>
@@ -390,10 +390,10 @@ export function LandingHome() {
                 <Link href="/intake">Run Diagnostic</Link>
               </li>
               <li>
-                <Link href="/faq">FAQ</Link>
+                <Link href="/pricing">Pricing</Link>
               </li>
               <li>
-                <Link href="/dashboard">Dashboard</Link>
+                <Link href="/contact">Contact</Link>
               </li>
               <li>
                 <a href={GOOGLE_BUSINESS_PROFILE_URL} target="_blank" rel="noopener noreferrer">
@@ -419,7 +419,7 @@ export function LandingHome() {
         </div>
       </footer>
 
-      <Link href="/jax-coming-soon" className="lp-jax-float">
+      <Link href="/jax" className="lp-jax-float">
         <span className="lp-jax-dot" />
         <span className="lp-jax-text">JAX SENTINEL — LIVE</span>
       </Link>

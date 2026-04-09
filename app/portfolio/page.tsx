@@ -9,7 +9,7 @@ import { breadcrumbJsonLd } from "@/lib/schema";
 import { ORG_ID, SITE_URL } from "@/lib/site";
 
 const TICKER = [
-  "CASE STUDIES",
+  "PORTFOLIO",
   "FOOD & BEVERAGE",
   "CREDIT RESTORATION",
   "CONTRACTING",
@@ -20,7 +20,7 @@ const TICKER = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Case Studies | Chaotically Organized AI — Bakersfield 661",
+  title: "Portfolio — Proof of Work | Chaotically Organized AI — Bakersfield 661",
   description:
     "Real websites built by Chaotically Organized AI for real Bakersfield-area operators. See the work, read the outcomes.",
   path: "/portfolio"
@@ -29,13 +29,13 @@ export const metadata: Metadata = pageMetadata({
 export default function PortfolioPage() {
   const crumbs = breadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Case studies", path: "/portfolio" }
+    { name: "Portfolio", path: "/portfolio" }
   ]);
 
   const collection = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Case Studies — Proof of Work",
+    name: "Portfolio — Proof of Work",
     url: `${SITE_URL}/portfolio`,
     publisher: { "@id": ORG_ID }
   };

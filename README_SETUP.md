@@ -32,13 +32,13 @@ Run files in this order:
 
 ## 4) Verify the pipeline
 
-1. Submit an audit from `/register`
-2. Confirm rows exist in:
+1. Submit the homepage RedScreen audit (or use `/intake` for the Formspree diagnostic wizard).
+2. For `/api/register` audits, confirm rows exist in:
    - `leads`
    - `audits`
    - `audit_results`
    - `messages`
-3. Open shareable report: `/report/<audit_id>`
+3. Follow-up is by email / contact — there is no public `/report/<id>` page.
 
 ## 5) Security and anti-spam included
 

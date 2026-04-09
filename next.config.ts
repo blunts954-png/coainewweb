@@ -9,6 +9,16 @@ const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname,
   images: {
     formats: ["image/avif", "image/webp"]
+  },
+  async redirects() {
+    return [
+      { source: "/jax-coming-soon", destination: "/jax", permanent: true },
+      { source: "/privacy-policy", destination: "/privacy", permanent: true },
+      { source: "/terms-of-service", destination: "/terms", permanent: true },
+      { source: "/case-studies", destination: "/portfolio", permanent: true },
+      { source: "/dashboard", destination: "/", permanent: true },
+      { source: "/register", destination: "/intake", permanent: true }
+    ];
   }
 };
 

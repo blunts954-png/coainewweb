@@ -4,12 +4,16 @@ import { CONTACT, LEGAL_NAME } from "@/lib/site";
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/website-design", label: "Web Design" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/portfolio", label: "Case Studies" },
+  { href: "/portfolio", label: "Portfolio" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
-  { href: "/intake", label: "Run Diagnostic" }
+  { href: "/intake", label: "Diagnostic" },
+  { href: "/jax", label: "JAX" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" }
 ];
 
 export function MarketingFooter() {

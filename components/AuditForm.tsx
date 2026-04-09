@@ -165,7 +165,11 @@ export function AuditForm({ variant = "default" }: AuditFormProps) {
           <h3>Audit Complete</h3>
           <p>Performance: {result.performanceScore} | Schema: {result.schemaScore}</p>
           <p>Issues detected: {result.issueCount}</p>
-          <p className="muted">Share report: /report/{result.id}</p>
+          {result.id ? (
+            <p className="muted">Reference ID: {result.id} — we&apos;ll follow up with your full breakdown.</p>
+          ) : (
+            <p className="muted">We&apos;ll follow up with your full breakdown.</p>
+          )}
         </div>
       ) : null}
     </section>
