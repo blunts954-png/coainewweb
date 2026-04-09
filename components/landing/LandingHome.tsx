@@ -7,6 +7,7 @@ import { LpRoiBlock } from "@/components/landing/LpRoiBlock";
 import { LpTicker } from "@/components/landing/LpTicker";
 import { LpTopNav } from "@/components/landing/LpTopNav";
 import { LpLangToggle } from "@/components/landing/LpLangToggle";
+import { LpLighthouseSection } from "@/components/landing/LpLighthouseSection";
 import { webSiteJsonLd } from "@/lib/schema";
 import {
   BRAND_TAGLINE,
@@ -63,6 +64,8 @@ export function LandingHome() {
           </div>
         </div>
       </section>
+
+      <LpLighthouseSection />
 
       <div className="lp-stat-banner">
         <div className="lp-stat-item">

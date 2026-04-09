@@ -1245,3 +1245,204 @@ body:has(.lp-page) .neural-canvas {
 body:has(.lp-page) .scanline-overlay {
   opacity: 0.05;
 }
+
+/* Lighthouse scanner section */
+.lp-lh-section {
+  background: var(--lp-black);
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
+  padding: 80px 24px;
+}
+
+.lp-lh-container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.lp-lh-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.lp-lh-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lp-green);
+  margin: 0 0 12px;
+  font-family: var(--font-mono), monospace;
+}
+
+.lp-lh-header h2 {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  color: #f5f5f5;
+  margin: 0 0 14px;
+  line-height: 1.2;
+}
+
+.lp-lh-header p {
+  font-size: 15px;
+  color: #888;
+  margin: 0 auto;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.lp-lh-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.lp-lh-input-row input {
+  flex: 1;
+  min-width: 200px;
+  padding: 13px 16px;
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  color: #f5f5f5;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.lp-lh-input-row input:focus {
+  border-color: var(--lp-green);
+}
+
+.lp-lh-input-row button {
+  padding: 13px 28px;
+  background: var(--lp-green);
+  color: var(--lp-black);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, opacity 0.2s;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.lp-lh-input-row button:hover:not(:disabled) {
+  background: #22c55e;
+}
+
+.lp-lh-input-row button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lp-lh-status {
+  font-size: 13px;
+  text-align: center;
+  margin: 0 0 32px;
+  min-height: 20px;
+}
+
+.lp-lh-muted {
+  color: #555;
+}
+
+.lp-lh-ok {
+  color: var(--lp-green);
+}
+
+.lp-lh-error {
+  color: #f87171;
+}
+
+.lp-lh-scores-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.lp-lh-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 24px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.3s;
+}
+
+.lp-lh-ring-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.lp-lh-ring-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  transition: color 0.5s;
+}
+
+.lp-lh-card-label {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-mono), monospace;
+}
+
+.lp-lh-cta {
+  text-align: center;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid #1e1e1e;
+}
+
+.lp-lh-cta p {
+  font-size: 14px;
+  color: #888;
+  margin: 0 0 16px;
+}
+
+.lp-lh-cta a {
+  display: inline-block;
+  padding: 13px 32px;
+  background: transparent;
+  border: 1px solid var(--lp-green);
+  color: var(--lp-green);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lp-lh-cta a:hover {
+  background: var(--lp-green);
+  color: var(--lp-black);
+}
+
+@media (max-width: 540px) {
+  .lp-lh-scores-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 360px) {
+  .lp-lh-scores-grid {
+    grid-template-columns: 1fr;
+  }
+}
