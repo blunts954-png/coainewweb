@@ -34,7 +34,7 @@ export function BreachVisualizer({ intensity = 1 }: BreachVisualizerProps) {
 
     let raf = 0;
     let running = true;
-    let t0 = performance.now();
+    const t0 = performance.now();
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -47,7 +47,7 @@ export function BreachVisualizer({ intensity = 1 }: BreachVisualizerProps) {
     window.addEventListener("resize", onResize);
 
     // Fixed breach x so the visual feels like one consistent “breach point”
-    let breachX = 0.58;
+    const breachX = 0.58;
 
     const draw = () => {
       if (!running) return;
@@ -135,7 +135,6 @@ export function BreachVisualizer({ intensity = 1 }: BreachVisualizerProps) {
 
       // Tech body
       const techX = w * 0.46;
-      const techY = h * 0.52;
       const techW = w * 0.06;
       const techH = h * 0.24;
 
