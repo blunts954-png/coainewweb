@@ -9,9 +9,14 @@ import { CONTACT, GOOGLE_BUSINESS_PROFILE_URL, LEGAL_NAME } from "@/lib/site";
 
 export function AppChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const noRail =
+    pathname === "/" ||
+    pathname === "/portfolio" ||
+    pathname === "/services" ||
+    pathname === "/about" ||
+    pathname === "/faq";
 
-  if (isHome) {
+  if (noRail) {
     return <>{children}</>;
   }
 

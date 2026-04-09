@@ -11,6 +11,7 @@ import { organizationJsonLd } from "@/lib/schema";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import "./globals.css";
 import "./landing-page.css";
+import "./marketing-inner.css";
 
 const inter = Space_Grotesk({
   subsets: ["latin"],
