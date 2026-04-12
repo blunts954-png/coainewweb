@@ -1363,6 +1363,69 @@ body:has(.lp-page) .scanline-overlay {
   cursor: not-allowed;
 }
 
+.lp-lh-strategy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.lp-lh-strategy-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #666;
+  margin-right: 4px;
+}
+
+.lp-lh-strategy-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #151515;
+  color: #aaa;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background 0.2s;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.lp-lh-strategy-btn:hover:not(:disabled) {
+  border-color: #444;
+  color: #eee;
+}
+
+.lp-lh-strategy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lp-lh-strategy-active {
+  border-color: var(--lp-green);
+  color: var(--lp-black);
+  background: var(--lp-green);
+}
+
+.lp-lh-meta {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  margin: 0 auto 20px;
+  line-height: 1.5;
+  max-width: 560px;
+}
+
+.lp-lh-meta-url {
+  color: #888;
+  word-break: break-all;
+}
+
 .lp-lh-status {
   font-size: 13px;
   text-align: center;

@@ -33,7 +33,8 @@ exports.handler = async function (event) {
   }
 
   const apiKey = process.env.PAGESPEED_API_KEY;
-  const params = new URLSearchParams({ url: targetUrl, strategy: "mobile" });
+  const params = new URLSearchParams({ url: targetUrl, strategy: "mobile", locale: "en-US" });
+  ["performance", "accessibility", "best-practices", "seo"].forEach((c) => params.append("category", c));
   if (apiKey) params.set("key", apiKey);
 
   const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${params.toString()}`;

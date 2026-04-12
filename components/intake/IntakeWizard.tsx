@@ -129,17 +129,21 @@ export function IntakeWizard({ packageInterest }: IntakeWizardProps) {
     (async () => {
       try {
         const res = await fetch(`/api/lighthouse?url=${encodeURIComponent(target)}`);
-        const json = (await res.json()) as { performance?: number; seo?: number; error?: string };
+        const json = (await res.json()) as { performance?: number | null; seo?: number | null; error?: string };
         if (cancelled) return;
         if (!res.ok || json.error) {
           setLiveScoresFailed(true);
           setLiveScores(null);
           return;
         }
-        setLiveScores({
-          performance: json.performance ?? 0,
-          seo: json.seo ?? 0
-        });
+        const perf = json.performance;
+        const seo = json.seo;
+        if (typeof perf === "number" && typeof seo === "number") {
+          setLiveScores({ performance: perf, seo });
+        } else {
+          setLiveScoresFailed(true);
+          setLiveScores(null);
+        }
       } catch {
         if (!cancelled) {
           setLiveScoresFailed(true);

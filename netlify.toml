@@ -1,2 +1,3 @@
+# Optional legacy Netlify deploy. Primary production uses Vercel — Lighthouse lives at app/api/lighthouse/route.ts.
 [functions]
   directory = "netlify/functions"

@@ -2,24 +2,42 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import type { PsiStrategy } from "@/lib/pagespeed-insights";
 
 type LighthousePayload = {
-  performance: number;
-  seo: number;
-  accessibility: number;
-  bestPractices: number;
+  performance: number | null;
+  seo: number | null;
+  accessibility: number | null;
+  bestPractices: number | null;
+  strategy?: PsiStrategy;
+  lighthouseVersion?: string | null;
+  fetchTime?: string | null;
+  finalUrl?: string | null;
+  cruxOverall?: string | null;
 };
 
 const CIRC = 188.5;
 
-function scoreColor(score: number) {
+function scoreColor(score: number | null) {
+  if (score === null) return "#555";
   if (score >= 90) return "#4ade80";
   if (score >= 50) return "#facc15";
   return "#f87171";
 }
 
+function formatCrux(overall: string | null | undefined): string | null {
+  if (!overall || overall === "NONE") return null;
+  const map: Record<string, string> = {
+    FAST: "Real users (Chrome): typically fast",
+    AVERAGE: "Real users (Chrome): mixed experience",
+    SLOW: "Real users (Chrome): often slow"
+  };
+  return map[overall] ?? `Real users (Chrome): ${overall}`;
+}
+
 export function LpLighthouseSection() {
   const [url, setUrl] = useState("");
+  const [strategy, setStrategy] = useState<PsiStrategy>("mobile");
   const [status, setStatus] = useState("Enter any URL above - including your competitors'");
   const [statusTone, setStatusTone] = useState<"muted" | "ok" | "error">("muted");
   const [loading, setLoading] = useState(false);
@@ -48,10 +66,11 @@ export function LpLighthouseSection() {
     setShowCta(false);
     setScores(null);
     setStatusTone("ok");
-    setStatus("Scanning... this takes about 10 seconds");
+    setStatus("Scanning… Google PageSpeed lab run (can take 15–30s with all categories)");
 
     try {
-      const res = await fetch(`/api/lighthouse?url=${encodeURIComponent(target)}`);
+      const qs = new URLSearchParams({ url: target, strategy });
+      const res = await fetch(`/api/lighthouse?${qs.toString()}`);
       const data = (await res.json()) as LighthousePayload & { error?: string };
       if (!res.ok) {
         setStatusTone("error");
@@ -60,7 +79,10 @@ export function LpLighthouseSection() {
       }
       setScores(data);
       setStatusTone("muted");
-      setStatus("Scan complete - mobile scores via Google Lighthouse");
+      const strat = data.strategy === "desktop" ? "Desktop" : "Mobile";
+      setStatus(
+        `Scan complete — ${strat} lab data (PageSpeed Insights API, matches pagespeed.web.dev for same URL + device).`
+      );
       setShowCta(true);
     } catch {
       setStatusTone("error");
@@ -70,6 +92,8 @@ export function LpLighthouseSection() {
     }
   }
 
+  const cruxLine = scores ? formatCrux(scores.cruxOverall) : null;
+
   return (
     <section id="site-scanner" className="lp-lh-section">
       <div className="lp-lh-container">
@@ -77,8 +101,11 @@ export function LpLighthouseSection() {
           <p className="lp-lh-kicker">Live Diagnostic Tool</p>
           <h2>See How Your Site Scores Right Now</h2>
           <p>
-            Run a live Google Lighthouse audit on any URL. Performance, SEO, Accessibility, and Best Practices -
-            scored instantly.
+            Live Google Lighthouse via the PageSpeed Insights API — same four categories as{" "}
+            <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">
+              PageSpeed Insights
+            </a>
+            . Pick mobile or desktop to match what you&apos;re comparing.
           </p>
         </div>
 
@@ -102,12 +129,50 @@ export function LpLighthouseSection() {
           </button>
         </div>
 
+        <div className="lp-lh-strategy" role="group" aria-label="Lab device">
+          <span className="lp-lh-strategy-label">Lab device</span>
+          <button
+            type="button"
+            className={`lp-lh-strategy-btn ${strategy === "mobile" ? "lp-lh-strategy-active" : ""}`}
+            onClick={() => setStrategy("mobile")}
+            disabled={loading}
+          >
+            Mobile
+          </button>
+          <button
+            type="button"
+            className={`lp-lh-strategy-btn ${strategy === "desktop" ? "lp-lh-strategy-active" : ""}`}
+            onClick={() => setStrategy("desktop")}
+            disabled={loading}
+          >
+            Desktop
+          </button>
+        </div>
+
         <p className={`lp-lh-status lp-lh-${statusTone}`}>{status}</p>
+
+        {showCta && scores?.lighthouseVersion ? (
+          <p className="lp-lh-meta">
+            Lighthouse {scores.lighthouseVersion}
+            {scores.finalUrl ? (
+              <>
+                {" "}
+                · Audited: <span className="lp-lh-meta-url">{scores.finalUrl}</span>
+              </>
+            ) : null}
+            {cruxLine ? (
+              <>
+                <br />
+                {cruxLine}
+              </>
+            ) : null}
+          </p>
+        ) : null}
 
         <div className="lp-lh-scores-grid" id="lh-scores-grid">
           {cards.map((card) => {
             const score = card.score;
-            const color = score === null ? "#333" : scoreColor(score);
+            const color = scoreColor(score);
             const offset = score === null ? CIRC : CIRC - (score / 100) * CIRC;
             return (
               <div key={card.id} className="lp-lh-card" style={{ borderColor: score === null ? "#1e1e1e" : `${color}33` }}>
@@ -128,7 +193,7 @@ export function LpLighthouseSection() {
                     />
                   </svg>
                   <div className="lp-lh-ring-num" style={{ color }}>
-                    {score ?? "--"}
+                    {score === null ? "—" : score}
                   </div>
                 </div>
                 <span className="lp-lh-card-label">{card.label}</span>
@@ -147,4 +212,3 @@ export function LpLighthouseSection() {
     </section>
   );
 }
-

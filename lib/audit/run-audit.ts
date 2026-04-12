@@ -1,3 +1,4 @@
+import { buildPsiQuery } from "@/lib/pagespeed-insights";
 import { normalizeWebsiteUrl } from "@/lib/utils/normalize-website-url";
 
 export type AuditResult = {
@@ -36,8 +37,7 @@ export async function runAudit(url: string): Promise<AuditResult> {
   }
   const psiBase = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
   const key = process.env.PAGESPEED_API_KEY;
-  const query = new URLSearchParams({ url: targetUrl, strategy: "mobile" });
-  if (key) query.set("key", key);
+  const query = buildPsiQuery({ url: targetUrl, strategy: "mobile", apiKey: key });
   let data: PageSpeedInsightsResponse = {};
   let perf = 0;
   let auditError: string | null = null;

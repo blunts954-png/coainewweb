@@ -1,13 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
+
+/** PageSpeed runs can exceed default serverless limits — allow up to 60s on supported Vercel plans. */
+export const maxDuration = 60;
 import { normalizeWebsiteUrl } from "@/lib/utils/normalize-website-url";
+import {
+  buildPsiQuery,
+  categoryScoreToPercent,
+  normalizePsiStrategy,
+  type PsiStrategy
+} from "@/lib/pagespeed-insights";
 
 type PsiJson = {
+  loadingExperience?: { overall_category?: string };
   lighthouseResult?: {
+    lighthouseVersion?: string;
+    fetchTime?: string;
+    finalUrl?: string;
     categories?: {
-      performance?: { score?: number };
-      seo?: { score?: number };
-      accessibility?: { score?: number };
-      "best-practices"?: { score?: number };
+      performance?: { score?: number | null };
+      seo?: { score?: number | null };
+      accessibility?: { score?: number | null };
+      "best-practices"?: { score?: number | null };
     };
   };
   error?: { message?: string; status?: string };
@@ -24,6 +37,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "No URL provided" }, { status: 400 });
   }
 
+  const strategy: PsiStrategy = normalizePsiStrategy(req.nextUrl.searchParams.get("strategy"));
+
   let targetUrl: string;
   try {
     targetUrl = normalizeWebsiteUrl(raw);
@@ -35,9 +50,7 @@ export async function GET(req: NextRequest) {
   }
 
   const apiKey = process.env.PAGESPEED_API_KEY;
-  const params = new URLSearchParams({ url: targetUrl, strategy: "mobile" });
-  if (apiKey) params.set("key", apiKey);
-
+  const params = buildPsiQuery({ url: targetUrl, strategy, apiKey });
   const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${params.toString()}`;
 
   try {
@@ -54,12 +67,21 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: detail }, { status: 422 });
     }
 
-    const cats = data.lighthouseResult.categories;
+    const lr = data.lighthouseResult;
+    const cats = lr.categories;
+    const crux = data.loadingExperience?.overall_category ?? null;
+
     return NextResponse.json({
-      performance: Math.round((cats?.performance?.score ?? 0) * 100),
-      seo: Math.round((cats?.seo?.score ?? 0) * 100),
-      accessibility: Math.round((cats?.accessibility?.score ?? 0) * 100),
-      bestPractices: Math.round((cats?.["best-practices"]?.score ?? 0) * 100)
+      performance: categoryScoreToPercent(cats?.performance?.score),
+      seo: categoryScoreToPercent(cats?.seo?.score),
+      accessibility: categoryScoreToPercent(cats?.accessibility?.score),
+      bestPractices: categoryScoreToPercent(cats?.["best-practices"]?.score),
+      strategy,
+      lighthouseVersion: lr.lighthouseVersion ?? null,
+      fetchTime: lr.fetchTime ?? null,
+      finalUrl: lr.finalUrl ?? null,
+      /** Chrome UX Report bucket for this URL when Google has field data (FAST | AVERAGE | SLOW | NONE). */
+      cruxOverall: crux
     });
   } catch (err: unknown) {
     return NextResponse.json(

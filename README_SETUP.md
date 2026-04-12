@@ -47,7 +47,15 @@ Run files in this order:
 - Minimum fill-time check to reject bots
 - RLS enabled on all tables
 
-## 6) Before production deploy
+## 6) Production (Vercel)
+
+This app is built for **Vercel**: Next.js API routes (`/api/lighthouse`, `/api/register`, etc.) run as serverless functions there. Add **`PAGESPEED_API_KEY`** and other secrets under **Project → Settings → Environment Variables**, then redeploy.
+
+The `netlify/` folder is **optional legacy** only; Vercel does not use it.
+
+**Lighthouse / PageSpeed:** The API route allows up to **60s** (`maxDuration`). On Vercel **Hobby**, the platform may still cap at **10s** — heavy URLs can time out; **Pro** aligns with long PageSpeed runs.
+
+## 7) Before production deploy
 
 - Rotate any secrets exposed in chat or screenshots.
 - Set all env vars in Vercel project settings.
