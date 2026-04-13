@@ -10,7 +10,7 @@ export const FOUNDER = {
 } as const;
 
 export const CONTACT = {
-  email: "chaoticallyorganizedai@gmail.com",
+  email: "jason@coaibakersfield.com",
   phoneDisplay: "(661) 610-9198",
   phoneE164: "+16616109198",
   addressLine: "1712 19th St #216",

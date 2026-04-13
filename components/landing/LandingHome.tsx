@@ -8,7 +8,7 @@ import { LpTicker } from "@/components/landing/LpTicker";
 import { LpTopNav } from "@/components/landing/LpTopNav";
 import { LpLangToggle } from "@/components/landing/LpLangToggle";
 import { LpLighthouseSection } from "@/components/landing/LpLighthouseSection";
-import { webSiteJsonLd } from "@/lib/schema";
+import { faqPageJsonLd, webSiteJsonLd } from "@/lib/schema";
 import {
   BRAND_TAGLINE,
   CONTACT,
@@ -17,10 +17,29 @@ import {
   LEGAL_NAME
 } from "@/lib/site";
 
+const HOME_FAQ_LD = faqPageJsonLd([
+  {
+    question: "Do you build custom websites that we fully own?",
+    answer:
+      "Yes. Every COAI build is sovereign: custom code, full handoff, and no rented-funnel lock-in."
+  },
+  {
+    question: "Do you support Bakersfield and Kern County operators?",
+    answer:
+      "Yes. COAI is based in Bakersfield and primarily serves 661 operators, with national projects available."
+  },
+  {
+    question: "How do we start?",
+    answer:
+      "Start with the diagnostic intake. You get a prioritized fix roadmap and package fit before implementation."
+  }
+]);
+
 export function LandingHome() {
   return (
     <div className="lp-page">
       <JsonLd data={webSiteJsonLd()} />
+      <JsonLd data={HOME_FAQ_LD} />
       <LpTicker />
       <LpTopNav />
 
@@ -44,9 +63,6 @@ export function LandingHome() {
             <Link href="/intake" className="lp-btn-primary">
               Run My Free Diagnostic →
             </Link>
-            <a href="#calculator" className="lp-btn-secondary">
-              Calculate My Revenue Leak
-            </a>
           </div>
           <div className="lp-hero-trust">
             <div className="lp-trust-item">
@@ -61,11 +77,12 @@ export function LandingHome() {
             <div className="lp-trust-item">
               <span className="lp-check">✓</span> Founded by {FOUNDER.name}
             </div>
+            <div className="lp-trust-item">
+              <span className="lp-check">✓</span> Currently accepting 2 new client builds this month
+            </div>
           </div>
         </div>
       </section>
-
-      <LpLighthouseSection />
 
       <div className="lp-stat-banner">
         <div className="lp-stat-item">
@@ -100,21 +117,21 @@ export function LandingHome() {
                   <div className="lp-score-bar">
                     <div className="lp-score-fill lp-perf" />
                   </div>
-                  <span className="lp-score-val lp-perf-c">74</span>
+                  <span className="lp-score-val">--</span>
                 </div>
                 <div className="lp-score-row">
                   <span className="lp-score-label">Schema Signal</span>
                   <div className="lp-score-bar">
                     <div className="lp-score-fill lp-schema" />
                   </div>
-                  <span className="lp-score-val lp-bad">56</span>
+                  <span className="lp-score-val">--</span>
                 </div>
                 <div className="lp-score-row">
                   <span className="lp-score-label">AEO Readiness</span>
                   <div className="lp-score-bar">
                     <div className="lp-score-fill lp-aeo" />
                   </div>
-                  <span className="lp-score-val lp-bad">61</span>
+                  <span className="lp-score-val">--</span>
                 </div>
                 <div
                   style={{
@@ -128,7 +145,7 @@ export function LandingHome() {
                   <div style={{ color: "var(--lp-red)", marginBottom: 4 }}>
                     env::prod-sim · queue::ready · latency_target::&lt;3s
                   </div>
-                  <div>Status: AWAITING TARGET URL — Submit below to run live audit</div>
+                  <div>Status: STATIC VALUES REMOVED — use the live scanner above for real scores</div>
                 </div>
               </div>
             </div>
@@ -236,7 +253,7 @@ export function LandingHome() {
 
       <section className="lp-testimonials lp-section">
         <div className="lp-container">
-          <div className="lp-section-label">Client Outcomes</div>
+          <div className="lp-section-label">Client Outcome Patterns</div>
           <h2>
             Built for <span className="lp-text-green">measurable local growth.</span>
           </h2>
@@ -247,8 +264,8 @@ export function LandingHome() {
                 &ldquo;In 30 days, qualified lead capture increased 22% and average response lag dropped below 12
                 minutes.&rdquo;
               </p>
-              <div className="lp-testi-author">HVAC Operator</div>
-              <div className="lp-testi-role">Bakersfield, CA</div>
+              <div className="lp-testi-author">Anonymized service client</div>
+              <div className="lp-testi-role">Attribution available on request</div>
             </div>
             <div className="lp-testi-card">
               <div className="lp-testi-stars">★★★★★</div>
@@ -256,20 +273,22 @@ export function LandingHome() {
                 &ldquo;After launch, quote requests increased 31% with clearer service framing and tighter mobile
                 conversion flow.&rdquo;
               </p>
-              <div className="lp-testi-author">Plumbing Team</div>
-              <div className="lp-testi-role">Kern County, CA</div>
+              <div className="lp-testi-author">Anonymized service client</div>
+              <div className="lp-testi-role">Attribution available on request</div>
             </div>
             <div className="lp-testi-card">
               <div className="lp-testi-stars">★★★★★</div>
               <p className="lp-testi-text">
                 &ldquo;Missed-call recovery plus web intake routing lifted booked jobs by 18% in the first 45 days.&rdquo;
               </p>
-              <div className="lp-testi-author">Home Services Owner</div>
-              <div className="lp-testi-role">Central Bakersfield</div>
+              <div className="lp-testi-author">Anonymized service client</div>
+              <div className="lp-testi-role">Attribution available on request</div>
             </div>
           </div>
         </div>
       </section>
+
+      <LpLighthouseSection />
 
       <section className="lp-section" style={{ background: "var(--lp-black)" }}>
         <div className="lp-container">
@@ -432,7 +451,7 @@ export function LandingHome() {
 
       <Link href="/jax" className="lp-jax-float">
         <span className="lp-jax-dot" />
-        <span className="lp-jax-text">JAX SENTINEL — LIVE</span>
+        <span className="lp-jax-text">JAX SENTINEL — PRE-DEPLOYMENT</span>
       </Link>
     </div>
   );

@@ -18,7 +18,7 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "ProfessionalService",
+        "@type": ["ProfessionalService", "LocalBusiness"],
         "@id": ORG_ID,
         name: ORG_NAME,
         legalName: LEGAL_NAME,

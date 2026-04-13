@@ -3,7 +3,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { MarketingLayout } from "@/components/marketing/MarketingLayout";
 import { PricingPageBody } from "@/components/marketing/PricingPageBody";
 import { pageMetadata } from "@/lib/metadata";
-import { breadcrumbJsonLd } from "@/lib/schema";
+import { breadcrumbJsonLd, serviceJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = pageMetadata({
   title: "Pricing — Fixed Sovereign Builds",
@@ -27,6 +27,11 @@ const TICKER = [
   "YOU OWN EVERYTHING"
 ];
 
+const pricingService = serviceJsonLd(
+  "Sovereign website packages and automation implementation",
+  "Fixed-price sovereign website packages, commerce builds, and automation implementation for service businesses."
+);
+
 export default function PricingPage() {
   const crumbs = breadcrumbJsonLd([
     { name: "Home", path: "/" },
@@ -43,6 +48,7 @@ export default function PricingPage() {
   return (
     <MarketingLayout tickerItems={TICKER} activeHref="/pricing">
       <JsonLd data={webPage} />
+      <JsonLd data={pricingService} />
       <JsonLd data={crumbs} />
       <PricingPageBody />
     </MarketingLayout>

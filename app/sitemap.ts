@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/contact",
     "/intake",
+    "/intake/confirmation",
     "/jax",
     "/privacy",
     "/terms"

@@ -57,7 +57,8 @@ export default function PortfolioPage() {
           </h1>
           <p className="m-hero-sub">
             Every site below is a sovereign build — custom code, owned outright by the client. No rented funnels. No
-            platform dependency. Just clean, conversion-ready systems across six industries.
+            platform dependency. Some portfolio links are still on temporary hosting subdomains pending client DNS
+            cutover. Ownership remains with the client.
           </p>
         </div>
       </div>
