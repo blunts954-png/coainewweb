@@ -8,6 +8,7 @@ import { CONTACT } from "@/lib/site";
 const LINKS = [
   { href: "/services", label: "Services" },
   { href: "/website-design", label: "Web Design" },
+  { href: "/website-design/kern-county", label: "Kern County" },
   { href: "/pricing", label: "Pricing" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/faq", label: "FAQ" },
