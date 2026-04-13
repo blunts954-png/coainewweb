@@ -1,5 +1,16 @@
 /** Canonical business facts — keep NAP identical across schema, footer, GBP, and directories. */
-export const SITE_URL = "https://chaoticallyorganizedai.com";
+function normalizeSiteUrl(input: string | undefined): string {
+  const fallback = "https://chaoticallyorganizedai.com";
+  if (!input) return fallback;
+  try {
+    const parsed = new URL(input);
+    return `${parsed.origin}`.replace(/\/+$/, "");
+  } catch {
+    return fallback;
+  }
+}
+
+export const SITE_URL = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const ORG_NAME = "Chaotically Organized AI";
 export const LEGAL_NAME = "Chaotically Organized AI, LLC";

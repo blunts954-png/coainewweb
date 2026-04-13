@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { NeuralMesh } from "@/components/NeuralMesh";
 import { SplashIntro } from "@/components/SplashIntro";
 import { organizationJsonLd } from "@/lib/schema";
-import { SITE_DESCRIPTION } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 import "./globals.css";
 import "./landing-page.css";
 import "./marketing-inner.css";
@@ -34,7 +34,7 @@ const headline = Syne({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chaoticallyorganizedai.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Chaotically Organized AI",
     template: "%s | Chaotically Organized AI"
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Chaotically Organized AI",
     description: SITE_DESCRIPTION,
-    url: "https://chaoticallyorganizedai.com",
+    url: SITE_URL,
     siteName: "Chaotically Organized AI",
     images: [{ url: "/logo.png", width: 1200, height: 630 }]
   },
