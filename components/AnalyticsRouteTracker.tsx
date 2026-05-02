@@ -8,7 +8,7 @@ export function AnalyticsRouteTracker() {
   const search = useSearchParams();
 
   useEffect(() => {
-    const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+    const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-ZYCPQEBGTN";
     if (!measurementId || typeof window === "undefined" || typeof window.gtag !== "function") return;
     const query = search?.toString();
     const pagePath = query ? `${pathname}?${query}` : pathname;

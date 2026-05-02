@@ -9,7 +9,7 @@ import { AppChrome } from "@/components/AppChrome";
 import { JsonLd } from "@/components/JsonLd";
 import { NeuralMesh } from "@/components/NeuralMesh";
 import { SplashIntro } from "@/components/SplashIntro";
-import { organizationJsonLd } from "@/lib/schema";
+import { organizationJsonLd, webSiteJsonLd } from "@/lib/schema";
 import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 import "./globals.css";
 import "./landing-page.css";
@@ -69,16 +69,17 @@ export const metadata: Metadata = {
   }
 };
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-ZYCPQEBGTN";
+
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   const nonce = (await headers()).get("x-nonce") ?? "";
   return (
     <html lang="en">
       <body className={`${bodySans.variable} ${mono.variable} ${headline.variable} ${plusJakarta.variable} ${dmSans.variable}`}>
-        {gaId ? (
+        {GA_MEASUREMENT_ID ? (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
               strategy="afterInteractive"
               nonce={nonce}
             />
@@ -87,7 +88,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 function gtag(){dataLayer.push(arguments);}
 window.gtag = gtag;
 gtag('js', new Date());
-gtag('config', '${gaId}', { send_page_view: true });`}
+gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: true });`}
             </Script>
             <AnalyticsRouteTracker />
           </>
@@ -96,6 +97,7 @@ gtag('config', '${gaId}', { send_page_view: true });`}
         <div className="scanline-overlay" aria-hidden="true" />
         <SplashIntro />
         <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={webSiteJsonLd()} />
         <AppChrome>{children}</AppChrome>
         <Analytics />
       </body>
