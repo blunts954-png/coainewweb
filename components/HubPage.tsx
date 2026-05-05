@@ -364,7 +364,8 @@ export function HubPage() {
           transform: translateY(8px);
           transition: opacity 0.4s ease, transform 0.4s ease;
         }
-        .hub-panel:hover .hub-panel-desc { opacity: 1; transform: translateY(0); }
+        .hub-panel:hover .hub-panel-desc,
+        .hub-panel:focus-within .hub-panel-desc { opacity: 1; transform: translateY(0); }
 
         .hub-panel-bullets {
           list-style: none;
@@ -376,7 +377,8 @@ export function HubPage() {
           transform: translateY(8px);
           transition: opacity 0.4s ease, transform 0.4s ease;
         }
-        .hub-panel:hover .hub-panel-bullets { opacity: 1; transform: translateY(0); }
+        .hub-panel:hover .hub-panel-bullets,
+        .hub-panel:focus-within .hub-panel-bullets { opacity: 1; transform: translateY(0); }
         .hub-panel-bullets li {
           font-size: 0.79rem;
           line-height: 1.5;

@@ -720,13 +720,6 @@ main > article.panel:nth-of-type(even) {
   .shell { padding-inline: 1rem; }
   h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); }
   h2 { font-size: clamp(1.4rem, 4vw, 2rem); }
-  .app-frame {
-    grid-template-columns: 1fr;
-  }
-  .left-rail {
-    position: static;
-    min-height: auto;
-  }
 }
 
 @media (max-width: 480px) {

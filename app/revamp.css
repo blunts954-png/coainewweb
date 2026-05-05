@@ -387,7 +387,7 @@ img { max-width: 100%; display: block; }
   .final-cta-actions { flex-direction: column; align-items: center; }
 }
 
-/* ── TABLET (768px–1024px) ── */
+/* ── TABLET / LARGE PHONE (601px–1024px) ── */
 @media (min-width: 601px) and (max-width: 1024px) {
   .packages-grid { grid-template-columns: repeat(2, 1fr); }
   .testi-grid { grid-template-columns: repeat(2, 1fr); }
@@ -405,8 +405,8 @@ img { max-width: 100%; display: block; }
   .audit-form input, .audit-form button { width: 100%; }
   .packages-grid { grid-template-columns: 1fr; }
   .testi-grid { grid-template-columns: 1fr; }
-  .package-card .btn-primary, .package-card .btn-secondary,
-  .package-card .btn-outline { width: 100%; justify-content: center; }
+  .pkg-card .btn-primary, .pkg-card .btn-secondary,
+  .pkg-card .btn-outline { width: 100%; justify-content: center; }
   .footer-inner { grid-template-columns: 1fr; }
   .stat-banner { grid-template-columns: 1fr; }
 }
