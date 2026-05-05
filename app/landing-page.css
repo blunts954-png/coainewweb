@@ -1535,7 +1535,7 @@ body:has(.lp-page) .scanline-overlay {
 }
 
 /* ── TABLET RESPONSIVE ADDITIONS ── */
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .lp-container { padding: 0 28px; }
   .lp-packages-grid { grid-template-columns: repeat(2, 1fr); }
   .lp-footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
