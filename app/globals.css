@@ -709,3 +709,28 @@ main > article.panel:nth-of-type(even) {
     text-align: center;
   }
 }
+
+/* ── GLOBAL RESPONSIVE BREAKPOINTS ── */
+@media (max-width: 1024px) {
+  .shell { padding-inline: 1.5rem; }
+  main { padding-inline: 1rem; }
+}
+
+@media (max-width: 768px) {
+  .shell { padding-inline: 1rem; }
+  h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); }
+  h2 { font-size: clamp(1.4rem, 4vw, 2rem); }
+  .app-frame {
+    grid-template-columns: 1fr;
+  }
+  .left-rail {
+    position: static;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .shell { padding-inline: 0.75rem; }
+  h1 { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+  h2 { font-size: clamp(1.2rem, 5vw, 1.7rem); }
+}

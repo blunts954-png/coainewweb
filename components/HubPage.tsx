@@ -49,11 +49,13 @@ export function HubPage() {
             <div className="hub-panel-logo hub-logo-blue">🛡️</div>
             <h2 className="hub-panel-name hub-name-blue">LeadShield</h2>
             <p className="hub-panel-tagline">Stop losing $8,500/month to missed calls</p>
-            <p className="hub-panel-desc">
-              AI-powered auto-reply for contractors and tradespeople. When you&apos;re on the job,
-              LeadShield answers your missed calls with intelligent SMS — scores leads HOT, WARM,
-              or COLD — so you call back the right ones first.
-            </p>
+            <ul className="hub-panel-bullets hub-bullets-blue">
+              <li>📞 Auto-texts missed callers in seconds</li>
+              <li>💸 Recover ~$8,500/mo in lost leads</li>
+              <li>🔥 Scores leads HOT, WARM, or COLD</li>
+              <li>🔁 Re-engages cold leads automatically</li>
+              <li>⚙️ Zero setup — live in minutes</li>
+            </ul>
             <div className="hub-panel-cta hub-cta-blue">
               <span>Learn More</span>
               <span className="hub-cta-arrow">→</span>
@@ -364,6 +366,27 @@ export function HubPage() {
         }
         .hub-panel:hover .hub-panel-desc { opacity: 1; transform: translateY(0); }
 
+        .hub-panel-bullets {
+          list-style: none;
+          padding: 0;
+          margin: 2px 0 0;
+          text-align: left;
+          max-width: 240px;
+          opacity: 0;
+          transform: translateY(8px);
+          transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .hub-panel:hover .hub-panel-bullets { opacity: 1; transform: translateY(0); }
+        .hub-panel-bullets li {
+          font-size: 0.79rem;
+          line-height: 1.5;
+          margin-bottom: 7px;
+          display: flex;
+          align-items: flex-start;
+          gap: 6px;
+        }
+        .hub-bullets-blue li { color: rgba(180,240,255,0.82); }
+
         .hub-panel-cta {
           display: flex;
           align-items: center;
@@ -391,16 +414,43 @@ export function HubPage() {
         .hub-panel-colors { display: flex; gap: 6px; margin-top: 4px; }
         .hub-dot { width: 8px; height: 8px; border-radius: 50%; }
 
+        /* ── TABLET (761px–1024px) ── */
+        @media (min-width: 761px) and (max-width: 1024px) {
+          .hub-panel-inner { padding: 36px 20px; max-width: 280px; gap: 10px; }
+          .hub-panel-name { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
+          .hub-panel-tagline { font-size: clamp(0.72rem, 1.2vw, 0.85rem); }
+          .hub-panel-badge { font-size: 0.58rem; padding: 3px 10px; }
+          .hub-panel-logo { font-size: 2.4rem; }
+          .hub-panel-cta { padding: 9px 18px; font-size: 0.72rem; }
+          .hub-panel-glow { width: 300px; height: 300px; }
+        }
+
+        /* ── MOBILE (<760px) ── */
         @media (max-width: 760px) {
           .hub-panels { flex-direction: column; height: auto; min-height: 100vh; }
-          .hub-panel { flex: none; min-height: 33.33vh; }
+          .hub-panel { flex: none; min-height: clamp(220px, 33.33vh, 340px); }
           .hub-panel:hover { flex: none; }
           .hub-panel-left::after, .hub-panel-center::after {
             right: auto; top: auto; bottom: 0; left: 10%; right: 10%;
             width: auto; height: 1px;
           }
           .hub-panel-desc { opacity: 1; transform: none; }
-          .hub-panel-inner { padding: 32px 24px; }
+          .hub-panel-bullets { opacity: 1; transform: none; }
+          .hub-panel-inner { padding: 28px 24px; gap: 8px; }
+          .hub-panel-logo { font-size: 2.4rem; }
+          .hub-panel-cta { min-height: 44px; padding: 12px 22px; }
+          .hub-panel-glow { width: 250px; height: 250px; }
+        }
+
+        /* ── SMALL MOBILE (<480px) ── */
+        @media (max-width: 480px) {
+          .hub-panel-inner { padding: 20px 16px; }
+          .hub-panel-name { font-size: 1.4rem; }
+          .hub-panel-tagline { font-size: 0.74rem; }
+          .hub-panel-colors { display: none; }
+          .hub-panel-bullets li { font-size: 0.75rem; margin-bottom: 5px; }
+          .hub-eyebrow { font-size: 0.65rem; letter-spacing: 0.15em; }
+          .hub-title { font-size: clamp(1.8rem, 8vw, 3rem); }
         }
       `}</style>
     </div>
