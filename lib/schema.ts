@@ -11,6 +11,7 @@ import {
   ORG_NAME,
   SAME_AS,
   SITE_URL,
+  AREA_SERVED,
   WEBSITE_ID
 } from "./site";
 
@@ -49,12 +50,7 @@ export function organizationJsonLd() {
           closes: BUSINESS_HOURS.weekday.closes
         })),
         founder: { "@id": FOUNDER_ID },
-        areaServed: [
-          { "@type": "City", name: "Bakersfield", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
-          { "@type": "City", name: "Delano", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
-          { "@type": "City", name: "Shafter", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
-          { "@type": "AdministrativeArea", name: "Kern County, CA" }
-        ],
+        areaServed: [...AREA_SERVED],
         contactPoint: {
           "@type": "ContactPoint",
           contactType: "customer service",
@@ -124,12 +120,7 @@ export function serviceJsonLd(serviceName: string, description: string, path?: s
     serviceType: serviceName,
     ...(path ? { url: `${SITE_URL}${path}` } : {}),
     provider: { "@id": ORG_ID },
-    areaServed: [
-      { "@type": "City", name: "Bakersfield", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
-      { "@type": "City", name: "Delano", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
-      { "@type": "City", name: "Shafter", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
-      { "@type": "AdministrativeArea", name: "Kern County, CA" }
-    ],
+    areaServed: [...AREA_SERVED],
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",

@@ -59,6 +59,14 @@ export const GOOGLE_BUSINESS_PROFILE_URL = "https://share.google/QASlHnjE2K6FzdN
  */
 export const SAME_AS = [GOOGLE_BUSINESS_PROFILE_URL] as const;
 
+/** Service territory for schema areaServed — update here to propagate across all structured data. */
+export const AREA_SERVED = [
+  { "@type": "City", name: "Bakersfield", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
+  { "@type": "City", name: "Delano", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
+  { "@type": "City", name: "Shafter", containedInPlace: { "@type": "AdministrativeArea", name: "Kern County, CA" } },
+  { "@type": "AdministrativeArea", name: "Kern County, CA" }
+] as const;
+
 /**
  * Map / place URL for schema `hasMap` (often the same as your public GBP link).
  * Replace with a `maps.google.com/?cid=...` URL from “Share” on your Business Profile if you prefer.
