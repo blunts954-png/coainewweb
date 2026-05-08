@@ -29,6 +29,14 @@ export function MarketingNav({ activeHref }: MarketingNavProps) {
 
   return (
     <>
+      <div className="m-topbar">
+        <div className="m-topbar-mission">We're here for all tech development and exposure.</div>
+        <div className="m-topbar-quicklinks">
+          <a href="https://coaibakersfield.com/home" target="_blank" rel="noopener noreferrer">Chaotically Organized AI Bakersfield</a>
+          <a href="https://leadshield.live" target="_blank" rel="noopener noreferrer">Lead Shield</a>
+          <a href="https://www.siteer.dev" target="_blank" rel="noopener noreferrer">siteER</a>
+        </div>
+      </div>
       <nav className="m-nav" aria-label="Primary">
         <Link href="/" className="m-nav-logo" onClick={() => setOpen(false)}>
           CHAOTICALLY ORGANIZED AI

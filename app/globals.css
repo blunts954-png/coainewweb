@@ -609,6 +609,30 @@ main > article.panel:nth-of-type(even) {
   }
 }
 
+/* Topbar: clean mission + quick external links */
+.m-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 1.25rem;
+  background: rgba(10,10,10,0.98);
+  border-bottom: 1px solid var(--m-border);
+}
+.m-topbar-mission {
+  font-size: 0.95rem;
+  color: var(--m-muted);
+}
+.m-topbar-quicklinks a {
+  margin-left: 0.75rem;
+  color: var(--m-green);
+  text-decoration: none;
+  font-weight: 600;
+}
+.m-topbar-quicklinks a:hover {
+  text-decoration: underline;
+}
+
 /* ── GLOBAL RESPONSIVE BREAKPOINTS ── */
 @media (max-width: 1024px) {
   .shell { padding-inline: 1.5rem; }
