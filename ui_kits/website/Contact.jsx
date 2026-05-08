@@ -78,7 +78,7 @@ function Contact({ onNavigate }) {
             ) : (
               <>
                 <h2 className="contact-form-title">Send a Message</h2>
-                <p className="contact-form-sub">Submissions go to jasonm@coaibakersfield.com. Jason responds same business day.</p>
+                <p className="contact-form-sub">Jason responds same business day.</p>
                 <form onSubmit={handleSubmit} className="contact-form">
                   <div className="cf-row">
                     <div className="field-group">
