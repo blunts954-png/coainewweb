@@ -32,7 +32,7 @@ export function ServiceBoxes() {
           <a href="https://www.siteer.dev" target="_blank" rel="noopener noreferrer" className="btn">Run a Scan</a>
           <a href="/pricing" className="btn btn-ghost">See Pricing</a>
         </div>
-        <p className="hustle">Fast turnaround — we'll fight to get your site healthy.</p>
+        <p className="hustle">Fast turnaround — we&apos;ll fight to get your site healthy.</p>
       </article>
 
       <article className="service-card card-leadshield">
