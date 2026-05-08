@@ -138,7 +138,7 @@ export function IntakePage() {
             </div>
             
             <p style={{ textAlign: "center", fontSize: ".72rem", color: "var(--text-muted2)", marginTop: "24px" }}>
-              No spam. No cold calls. Just a practical roadmap.<br/></p>
+              No spam. No cold calls. Just a practical roadmap.</p>
           </div>
         </div>
       </div>

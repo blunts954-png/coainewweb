@@ -1,5 +1,6 @@
 import {
   BUSINESS_HOURS,
+  CO_FOUNDER,
   CONTACT,
   FOUNDER,
   GEO,
@@ -72,6 +73,13 @@ export function organizationJsonLd() {
         url: `${SITE_URL}/about`,
         description: "Founder of Chaotically Organized AI, Bakersfield CA. 15+ years in operations, trades, and events.",
         worksFor: { "@id": ORG_ID }
+      },
+      {
+        "@type": "Person",
+        name: CO_FOUNDER.name,
+        jobTitle: CO_FOUNDER.role,
+        email: CO_FOUNDER.email,
+        worksFor: { "@id": ORG_ID }
       }
     ]
   };
@@ -125,7 +133,12 @@ export function serviceJsonLd(serviceName: string, description: string, path?: s
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
-      priceRange: "$1,200 - $2,000+"
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: 1200,
+        maxPrice: 2000,
+        priceCurrency: "USD"
+      }
     }
   };
 }

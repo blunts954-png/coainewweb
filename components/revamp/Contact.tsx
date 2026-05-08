@@ -100,7 +100,7 @@ export function Contact() {
                   </div>
                   <button type="submit" className="btn-primary" style={{ width: "100%", justifyContent: "center" }}>Send Message →</button>
                   <p style={{ textAlign: "center", fontSize: ".72rem", color: "var(--text-muted2)", marginTop: "12px" }}>
-                    Or skip the form — call (661) 569-4244 directly.<br/></p>
+                    Or skip the form — call (661) 569-4244 directly.</p>
                 </form>
               </>
             )}
