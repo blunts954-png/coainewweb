@@ -77,6 +77,66 @@ export function LandingHomeRevamp() {
       <Nav activePage={page} onNavigate={navigate} />
       <main>{renderContent()}</main>
       <Footer onNavigate={navigate} />
-    </div>
+      {/* Sticky mobile CTA bar */}
+      <div className="sticky-mobile-cta">
+        <a href="tel:+16615694244" className="sticky-call">📞 (661) 569-4244</a>
+        <a className="sticky-audit btn-primary" onClick={() => navigate("intake")} style={{ cursor: "pointer" }}>Free Audit →</a>
+      </div>
+
+      <style>{`
+        .sticky-mobile-cta {
+          display: none;
+        }
+        @media (max-width: 768px) {
+          .sticky-mobile-cta {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(6, 6, 10, 0.97);
+            border-top: 1px solid rgba(16, 217, 138, 0.25);
+            padding: 12px 16px;
+            gap: 10px;
+            align-items: center;
+          }
+          .sticky-call {
+            flex: 1;
+            text-align: center;
+            color: var(--accent-green, #10d98a);
+            font-weight: 700;
+            font-size: .85rem;
+            text-decoration: none;
+            border: 1px solid rgba(16,217,138,0.3);
+            border-radius: 8px;
+            padding: 12px 8px;
+          }
+          .sticky-audit {
+            flex: 1;
+            text-align: center;
+            font-size: .85rem;
+            padding: 12px 8px;
+            border-radius: 8px;
+          }
+          /* Push footer content above the sticky bar */
+          .revamp-shell main {
+            padding-bottom: 72px;
+          }
+        }
+        .hero-urgency {
+          font-size: .75rem;
+          color: #f5a623;
+          font-weight: 600;
+          margin: 4px 0 0;
+          letter-spacing: .02em;
+        }
+        .score-fill-bad {
+          width: 28%;
+          height: 100%;
+          background: linear-gradient(90deg, #ff4d5e, #ff8c6b);
+          border-radius: 4px;
+        }
+      `}</style></div>
   );
 }

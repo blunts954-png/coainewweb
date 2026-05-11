@@ -1,20 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 interface HeroProps {
   onNavigate: (page: string) => void;
 }
 
 export function Hero({ onNavigate }: HeroProps) {
-  const [revenue, setRevenue] = useState(148230);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setRevenue((v) => v + Math.floor(Math.random() * 120 + 40));
-    }, 2800);
-    return () => clearInterval(id);
-  }, []);
+  
 
   return (
     <section className="hero">
@@ -42,14 +35,15 @@ export function Hero({ onNavigate }: HeroProps) {
           </p>
           <div className="hero-ticker-row">
             <div className="live-ticker">
-              <span className="ticker-label">Recovered Revenue This Month</span>
-              <span className="ticker-val">${revenue.toLocaleString()}</span>
+              <span className="ticker-label">Real Client Result · Bakersfield HVAC</span>
+              <span className="ticker-val">+31% more calls in 30 days</span>
             </div>
           </div>
           <div className="hero-actions">
             <a className="btn-primary" onClick={() => onNavigate("intake")} style={{ cursor: "pointer" }}>
               Run My Free Diagnostic →
             </a>
+            <p className="hero-urgency">⚡ Only 2 client spots open this month</p>
             <a className="btn-secondary" href="tel:+16615694244">
               (661) 569-4244
             </a>
@@ -75,13 +69,17 @@ export function Hero({ onNavigate }: HeroProps) {
               <span className="card-badge breach">⚠ BREACH DETECTED</span>
               <div className="card-sub">VISIBILITY AUDIT · CURRENT BASELINE</div>
             </div>
-            {["Performance", "Schema Signal", "AEO Readiness"].map((label, i) => (
+            {[
+              { label: "Performance", val: "38/100", bad: true },
+              { label: "Schema Signal", val: "None", bad: true },
+              { label: "AEO Readiness", val: "0%", bad: true },
+            ].map(({ label, val, bad }) => (
               <div key={label} className="score-row">
                 <span className="score-label">{label}</span>
                 <div className="score-bar">
-                  <div className={`score-fill score-fill-${i}`} />
+                  <div className="score-fill score-fill-bad" />
                 </div>
-                <span className="score-val">--</span>
+                <span className="score-val" style={{ color: bad ? "#ff4d5e" : "#10d98a" }}>{val}</span>
               </div>
             ))}
             <div className="card-footer-note">
@@ -118,7 +116,7 @@ export function Hero({ onNavigate }: HeroProps) {
       {/* Stat banner */}
       <div className="stat-banner">
         {[
-          { num: "$" + revenue.toLocaleString(), label: "Revenue Recovered This Month" },
+          { num: "+31%", label: "More Calls for Bakersfield HVAC Client" },
           { num: "661", label: "Local Bakersfield Focus" },
           { num: "<3s", label: "Target Diagnostic Response" },
           { num: "100%", label: "Sovereign — No Platform Dependency" },
