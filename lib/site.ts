@@ -17,7 +17,14 @@ export const LEGAL_NAME = "Chaotically Organized AI, LLC";
 
 export const FOUNDER = {
   name: "Jason Robert Manuel",
-  role: "Founder"
+  role: "Founder",
+  email: "jasonm@coaibakersfield.com"
+} as const;
+
+export const CO_FOUNDER = {
+  name: "Frank Hernandez",
+  role: "Co-Founder",
+  email: "frankh@coaibakersfield.com"
 } as const;
 
 export const CONTACT = {
