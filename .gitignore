@@ -33,3 +33,8 @@ Untitled
 
 # Test coverage output
 coverage/
+
+# Claude worktrees (local submodules).claude/worktrees/
+
+tsconfig.tsbuildinfo
+public/*.png

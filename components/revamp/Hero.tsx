@@ -1,127 +1,176 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 
 interface HeroProps {
   onNavigate: (page: string) => void;
 }
 
-export function Hero({ onNavigate }: HeroProps) {
-  const [revenue, setRevenue] = useState(148230);
+type XrayResult = {
+  performance: number | null;
+  seo: number | null;
+  accessibility: number | null;
+  bestPractices: number | null;
+  error?: string;
+};
 
-  useEffect(() => {
-    const id = setInterval(() => {
-      setRevenue((v) => v + Math.floor(Math.random() * 120 + 40));
-    }, 2800);
-    return () => clearInterval(id);
-  }, []);
+function gradeLabel(score: number | null): string {
+  if (score === null) return "—";
+  if (score >= 90) return "A";
+  if (score >= 50) return "B";
+  if (score >= 10) return "C";
+  return "D";
+}
+
+function gradeColor(score: number | null): string {
+  if (score === null) return "var(--cream-dim)";
+  if (score >= 90) return "#4ade80";
+  if (score >= 50) return "#facc15";
+  if (score >= 10) return "#fb923c";
+  return "#f87171";
+}
+
+export function Hero({ onNavigate }: HeroProps) {
+  const [xrayUrl, setXrayUrl] = useState("");
+  const [xrayLoading, setXrayLoading] = useState(false);
+  const [xrayResult, setXrayResult] = useState<XrayResult | null>(null);
+
+  const runXray = async () => {
+    if (!xrayUrl.trim()) return;
+    setXrayLoading(true);
+    setXrayResult(null);
+    try {
+      const r = await fetch(`/api/lighthouse?url=${encodeURIComponent(xrayUrl.trim())}&strategy=mobile`);
+      const data = await r.json();
+      if (!r.ok) {
+        setXrayResult({ performance: null, seo: null, accessibility: null, bestPractices: null, error: data.error || "Scan failed" });
+      } else {
+        setXrayResult(data);
+      }
+    } catch {
+      setXrayResult({ performance: null, seo: null, accessibility: null, bestPractices: null, error: "Network error. Try again." });
+    }
+    setXrayLoading(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") runXray();
+  };
 
   return (
     <section className="hero">
-      {/* Mesh bg (CSS animated) */}
       <div className="hero-mesh" />
-      <div className="hero-orb hero-orb-1" />
-      <div className="hero-orb hero-orb-2" />
-
       <div className="container hero-inner">
-        {/* Left */}
         <div className="hero-left">
           <div className="hero-pill">
-            <span className="pill-dot"></span>
-            Bakersfield 661 · Structural Audit Engine · Live
+            Based in Bakersfield, CA · Serving the U.S.
           </div>
           <h1 className="hero-h1">
-            Your competitors are
-            <br />
-            <del className="hero-strike">invisible online.</del>
-            <br />
-            <span className="hero-accent">You don&apos;t have to be.</span>
+            Websites, AI automation &amp; tech support for <span className="highlight">tradesmen &amp; small businesses.</span>
           </h1>
           <p className="hero-sub">
-            <strong>Chaotically Organized AI</strong> runs structural digital audits for Bakersfield operators — fixing slow pages, broken schema, and visibility leaks <em>before</em> you spend a dollar on ads. We build sovereign infrastructure you own outright.
+            <strong>Chaotically Organized AI</strong> builds sovereign websites you own, sets up AI that answers your missed calls, and fixes computers — all without the jargon or the runaround. Based in Bakersfield, serving businesses across the U.S.
           </p>
-          <div className="hero-ticker-row">
-            <div className="live-ticker">
-              <span className="ticker-label">Recovered Revenue This Month</span>
-              <span className="ticker-val">${revenue.toLocaleString()}</span>
-            </div>
-          </div>
           <div className="hero-actions">
             <a className="btn-primary" onClick={() => onNavigate("intake")} style={{ cursor: "pointer" }}>
-              Run My Free Diagnostic →
+              Get Your Free Digital Audit →
             </a>
-            <a className="btn-secondary" href="tel:+16616109198">
-              (661) 610-9198
+            <a className="btn-calendar" href="https://calendar.app.google/hswWkCmjqLEKtRuE6" target="_blank" rel="noopener noreferrer">
+              📅 Book Free Audit
+            </a>
+            <a className="btn-phone" href="tel:6615694244">
+              (661) 569-4244
             </a>
           </div>
           <div className="hero-trust">
-            {[
-              "No rented funnels — you own the system",
-              "Clear pricing, no vague retainers",
-              "Local Bakersfield support",
-              "Founded by Jason Robert Manuel",
-            ].map((t) => (
-              <div key={t} className="trust-item">
-                <span className="check">✓</span> {t}
-              </div>
-            ))}
+            <div className="trust-item"><span className="check">✓</span> You own the website — no monthly rental</div>
+            <div className="trust-item"><span className="check">✓</span> Clear pricing, no hidden fees</div>
+            <div className="trust-item"><span className="check">✓</span> 6+ trade sites already built and live</div>
+            <div className="trust-item"><span className="check">✓</span> Phone support — talk to a human</div>
+          </div>
+          <div className="trust-badges">
+            <Image src="/logo.png" alt="COAI" width={24} height={24} style={{ borderRadius: 4, objectFit: "contain" }} />
+            <span className="trust-badge">Based in Bakersfield, CA</span>
+            <span className="trust-badge">5★ Google Rated</span>
           </div>
         </div>
 
-        {/* Right */}
         <div className="hero-right">
           <div className="hero-card">
-            <div className="card-head">
-              <span className="card-badge breach">⚠ BREACH DETECTED</span>
-              <div className="card-sub">VISIBILITY AUDIT · CURRENT BASELINE</div>
-            </div>
-            {["Performance", "Schema Signal", "AEO Readiness"].map((label, i) => (
-              <div key={label} className="score-row">
-                <span className="score-label">{label}</span>
-                <div className="score-bar">
-                  <div className={`score-fill score-fill-${i}`} />
-                </div>
-                <span className="score-val">--</span>
+            <div className="hero-card-icon">🔧</div>
+            <h3>What we do, plain and simple:</h3>
+            <ul className="hero-card-list">
+              <li>Websites you actually own (not rented from Wix)</li>
+              <li>AI that texts your missed callers back instantly</li>
+              <li>Computer repair &amp; tech support — no BS</li>
+              <li>Google setup so customers can find you</li>
+              <li>Free 20-minute audit to show you what&apos;s broken</li>
+            </ul>
+            <div className="hero-lighthouse-input">
+              <p style={{ fontSize: "13px", color: "var(--cream-muted)", marginBottom: "8px", fontWeight: 600 }}>Get your Website X-Ray:</p>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <input
+                  type="url"
+                  placeholder="yourwebsite.com"
+                  value={xrayUrl}
+                  onChange={e => setXrayUrl(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  disabled={xrayLoading}
+                  style={{
+                    flex: 1, padding: "10px 14px", borderRadius: "8px",
+                    background: "var(--navy)", border: "1px solid var(--navy-border)",
+                    color: "var(--cream)", fontSize: "14px", outline: "none"
+                  }}
+                />
+                <button
+                  onClick={runXray}
+                  disabled={xrayLoading}
+                  style={{
+                    padding: "10px 18px", borderRadius: "8px", border: "none",
+                    background: "var(--amber)", color: "var(--navy)",
+                    fontWeight: 700, fontSize: "13px", cursor: "pointer", whiteSpace: "nowrap"
+                  }}
+                >
+                  {xrayLoading ? "Scanning..." : "X-Ray It"}
+                </button>
               </div>
-            ))}
-            <div className="card-footer-note">
-              <div className="card-red-text">env::prod-sim · queue::ready · latency_target::&lt;3s</div>
-              Status: Run the live scanner above for real scores
-            </div>
-            <a
-              className="btn-primary btn-sm"
-              onClick={() => onNavigate("intake")}
-              style={{ cursor: "pointer", marginTop: "16px", display: "block", textAlign: "center" }}
-            >
-              Run Free Diagnostic →
-            </a>
-          </div>
-          {/* Float cards */}
-          <div className="float-card float-card-1">
-            <div className="float-icon">↑</div>
-            <div>
-              <div className="float-title">+22% Lead Capture</div>
-              <div className="float-sub">30-day outcome</div>
-            </div>
-            <span className="float-badge green">LIVE</span>
-          </div>
-          <div className="float-card float-card-2">
-            <div className="float-icon">◉</div>
-            <div>
-              <div className="float-title">Schema: Hardened</div>
-              <div className="float-sub">AEO ready</div>
+              {xrayLoading && <p style={{ fontSize: "12px", color: "var(--cream-dim)", marginTop: "8px" }}>Running Google Lighthouse scan...</p>}
+              {xrayResult && !xrayLoading && (
+                <div style={{ marginTop: "12px", padding: "12px", background: "rgba(0,0,0,0.3)", borderRadius: "8px", border: "1px solid var(--navy-border)" }}>
+                  {xrayResult.error ? (
+                    <p style={{ fontSize: "12px", color: "#f87171" }}>{xrayResult.error}</p>
+                  ) : (
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                      {[
+                        ["Perf", xrayResult.performance],
+                        ["SEO", xrayResult.seo],
+                        ["Access", xrayResult.accessibility],
+                        ["Best Pr.", xrayResult.bestPractices],
+                      ].map(([label, score]) => (
+                        <div key={label as string} style={{ textAlign: "center" }}>
+                          <div style={{ fontSize: "10px", color: "var(--cream-dim)", textTransform: "uppercase", letterSpacing: "1px" }}>{label as string}</div>
+                          <div style={{ fontSize: "20px", fontWeight: 800, color: gradeColor(score as number | null) }}>{gradeLabel(score as number | null)}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <a onClick={() => onNavigate("intake")} style={{ display: "block", textAlign: "center", marginTop: "8px", fontSize: "12px", color: "var(--amber)", cursor: "pointer", textDecoration: "underline" }}>
+                    Get the full audit & fix plan →
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Stat banner */}
       <div className="stat-banner">
         {[
-          { num: "$" + revenue.toLocaleString(), label: "Revenue Recovered This Month" },
-          { num: "661", label: "Local Bakersfield Focus" },
-          { num: "<3s", label: "Target Diagnostic Response" },
-          { num: "100%", label: "Sovereign — No Platform Dependency" },
+          { num: "50+", label: "Services Offered" },
+          { num: "$50", label: "PC Repair Starting Price" },
+          { num: "6+", label: "Trade Sites Built" },
+          { num: "100%", label: "You Own What We Build" },
         ].map((s, i) => (
           <div key={i} className="stat-item">
             <div className="stat-num">{s.num}</div>

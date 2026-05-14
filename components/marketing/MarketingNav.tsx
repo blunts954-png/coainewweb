@@ -29,6 +29,14 @@ export function MarketingNav({ activeHref }: MarketingNavProps) {
 
   return (
     <>
+      <div className="m-topbar">
+        <div className="m-topbar-mission">We&apos;re here for all tech development and exposure.</div>
+        <div className="m-topbar-quicklinks">
+          <Link href={"/#service-coai"}>Chaotically Organized AI Bakersfield</Link>
+          <Link href={"/#service-leadshield"}>Lead Shield</Link>
+          <Link href={"/#service-siteer"}>siteER</Link>
+        </div>
+      </div>
       <nav className="m-nav" aria-label="Primary">
         <Link href="/" className="m-nav-logo" onClick={() => setOpen(false)}>
           CHAOTICALLY ORGANIZED AI

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ServiceBoxes } from "@/components/ServiceBoxes";
 
 export function HubPage() {
   return (
@@ -94,6 +95,9 @@ export function HubPage() {
         </a>
 
       </div>
+
+      {/* Detailed service boxes */}
+      <ServiceBoxes />
 
       <style>{`
         .hub-root {

@@ -89,7 +89,7 @@ export function ContactMarketingForm({
     <div className="m-contact-form-wrap" id="contact-form">
       <h2 className="m-contact-form-title">Send a Message</h2>
       <p className="m-contact-form-sub">
-        Submissions go to <strong>{CONTACT.email}</strong> via our form handler. Jason responds same business day. If
+        Submissions go to <strong>{CONTACT.email}</strong> &amp; frankh@coaibakersfield.com via our form handler. Jason responds same business day. If
         it&apos;s urgent, call directly — {CONTACT.phoneDisplay}.
       </p>
       <form id="contact-form-fields" onSubmit={handleSubmit}>
