@@ -54,6 +54,7 @@ export function Nav({ activePage, onNavigate }: NavProps) {
               </a>
             </li>
           ))}
+          <li><a href="https://leadshield.live" target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)" }}>LeadShield</a></li>
           <li><a href="https://coaibuilds.com" target="_blank" rel="noopener noreferrer">COAIBuilds</a></li>
           <li><a href="https://siteer.dev" target="_blank" rel="noopener noreferrer" style={{ color: "var(--danger)" }}>SiteER</a></li>
         </ul>

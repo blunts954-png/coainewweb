@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -61,6 +62,10 @@ export function Footer({ onNavigate }: FooterProps) {
         <p>
           Websites, AI, and tech support for the Kern County trades community.
         </p>
+        <div className="footer-legal-links" style={{ marginTop: "12px", display: "flex", gap: "16px", justifyContent: "center", fontSize: "13px" }}>
+          <Link href="/privacy" style={{ color: "var(--cream-dim)", textDecoration: "underline" }}>Privacy Policy</Link>
+          <Link href="/terms" style={{ color: "var(--cream-dim)", textDecoration: "underline" }}>Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );

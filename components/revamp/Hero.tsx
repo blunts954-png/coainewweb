@@ -1,13 +1,63 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 interface HeroProps {
   onNavigate: (page: string) => void;
 }
 
+type XrayResult = {
+  performance: number | null;
+  seo: number | null;
+  accessibility: number | null;
+  bestPractices: number | null;
+  error?: string;
+};
+
+function gradeLabel(score: number | null): string {
+  if (score === null) return "—";
+  if (score >= 90) return "A";
+  if (score >= 50) return "B";
+  if (score >= 10) return "C";
+  return "D";
+}
+
+function gradeColor(score: number | null): string {
+  if (score === null) return "var(--cream-dim)";
+  if (score >= 90) return "#4ade80";
+  if (score >= 50) return "#facc15";
+  if (score >= 10) return "#fb923c";
+  return "#f87171";
+}
+
 export function Hero({ onNavigate }: HeroProps) {
+  const [xrayUrl, setXrayUrl] = useState("");
+  const [xrayLoading, setXrayLoading] = useState(false);
+  const [xrayResult, setXrayResult] = useState<XrayResult | null>(null);
+
+  const runXray = async () => {
+    if (!xrayUrl.trim()) return;
+    setXrayLoading(true);
+    setXrayResult(null);
+    try {
+      const r = await fetch(`/api/lighthouse?url=${encodeURIComponent(xrayUrl.trim())}&strategy=mobile`);
+      const data = await r.json();
+      if (!r.ok) {
+        setXrayResult({ performance: null, seo: null, accessibility: null, bestPractices: null, error: data.error || "Scan failed" });
+      } else {
+        setXrayResult(data);
+      }
+    } catch {
+      setXrayResult({ performance: null, seo: null, accessibility: null, bestPractices: null, error: "Network error. Try again." });
+    }
+    setXrayLoading(false);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") runXray();
+  };
+
   return (
     <section className="hero">
       <div className="hero-mesh" />
@@ -63,6 +113,10 @@ export function Hero({ onNavigate }: HeroProps) {
                 <input
                   type="url"
                   placeholder="yourwebsite.com"
+                  value={xrayUrl}
+                  onChange={e => setXrayUrl(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  disabled={xrayLoading}
                   style={{
                     flex: 1, padding: "10px 14px", borderRadius: "8px",
                     background: "var(--navy)", border: "1px solid var(--navy-border)",
@@ -70,16 +124,42 @@ export function Hero({ onNavigate }: HeroProps) {
                   }}
                 />
                 <button
-                  onClick={() => onNavigate("intake")}
+                  onClick={runXray}
+                  disabled={xrayLoading}
                   style={{
                     padding: "10px 18px", borderRadius: "8px", border: "none",
                     background: "var(--amber)", color: "var(--navy)",
                     fontWeight: 700, fontSize: "13px", cursor: "pointer", whiteSpace: "nowrap"
                   }}
                 >
-                  X-Ray It
+                  {xrayLoading ? "Scanning..." : "X-Ray It"}
                 </button>
               </div>
+              {xrayLoading && <p style={{ fontSize: "12px", color: "var(--cream-dim)", marginTop: "8px" }}>Running Google Lighthouse scan...</p>}
+              {xrayResult && !xrayLoading && (
+                <div style={{ marginTop: "12px", padding: "12px", background: "rgba(0,0,0,0.3)", borderRadius: "8px", border: "1px solid var(--navy-border)" }}>
+                  {xrayResult.error ? (
+                    <p style={{ fontSize: "12px", color: "#f87171" }}>{xrayResult.error}</p>
+                  ) : (
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                      {[
+                        ["Perf", xrayResult.performance],
+                        ["SEO", xrayResult.seo],
+                        ["Access", xrayResult.accessibility],
+                        ["Best Pr.", xrayResult.bestPractices],
+                      ].map(([label, score]) => (
+                        <div key={label as string} style={{ textAlign: "center" }}>
+                          <div style={{ fontSize: "10px", color: "var(--cream-dim)", textTransform: "uppercase", letterSpacing: "1px" }}>{label as string}</div>
+                          <div style={{ fontSize: "20px", fontWeight: 800, color: gradeColor(score as number | null) }}>{gradeLabel(score as number | null)}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <a onClick={() => onNavigate("intake")} style={{ display: "block", textAlign: "center", marginTop: "8px", fontSize: "12px", color: "var(--amber)", cursor: "pointer", textDecoration: "underline" }}>
+                    Get the full audit & fix plan →
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
