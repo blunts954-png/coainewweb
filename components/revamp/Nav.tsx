@@ -30,7 +30,7 @@ export function Nav({ activePage, onNavigate }: NavProps) {
       <div className="topbar">
         <div className="topbar-tagline">
           <span className="topbar-dot" />
-          <span>Bakersfield, CA · Serving local trades &amp; small businesses</span>
+          <span>Based in Bakersfield · Serving businesses nationwide</span>
         </div>
         <div className="topbar-phone">
           <a href="tel:6615694244">(661) 569-4244</a>
@@ -54,6 +54,8 @@ export function Nav({ activePage, onNavigate }: NavProps) {
               </a>
             </li>
           ))}
+          <li><a href="https://coaibuilds.com" target="_blank" rel="noopener noreferrer">COAIBuilds</a></li>
+          <li><a href="https://siteer.dev" target="_blank" rel="noopener noreferrer" style={{ color: "var(--danger)" }}>SiteER</a></li>
         </ul>
         <a className="btn-calendar" href="https://calendar.app.google/hswWkCmjqLEKtRuE6" target="_blank" rel="noopener noreferrer" style={{ padding: "8px 16px", fontSize: "13px" }}>
           📅 Book Audit

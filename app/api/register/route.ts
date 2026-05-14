@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { runAudit } from "@/lib/audit/run-audit";
-import { getMessagingProvider } from "@/lib/messaging/sms-service";
 import { getClientIp, hasJsonContentType, isSameSiteRequest } from "@/lib/security/request-guards";
 import { getSupabaseAdmin } from "@/lib/supabase/client";
 import { verifyTurnstileToken } from "@/lib/turnstile/verify";
@@ -74,24 +73,6 @@ export async function POST(request: Request) {
         recommendations: audit.recommendations
       });
       assertNoError(resultInsert.error);
-    }
-
-    const provider = getMessagingProvider();
-    const messageResult = await provider.sendSms({
-      leadId,
-      to: parsed.phone,
-      body: `RedScreen ready for ${parsed.url}. ${audit.issueCount} code violations detected.`
-    });
-    if (supabase) {
-      const messageInsert = await supabase.from("messages").insert({
-        id: createId("msg"),
-        lead_id: leadId,
-        channel: "sms",
-        provider: messageResult.provider,
-        status: messageResult.status,
-        payload: messageResult.payload
-      });
-      assertNoError(messageInsert.error);
     }
 
     return NextResponse.json({ id, ...audit });

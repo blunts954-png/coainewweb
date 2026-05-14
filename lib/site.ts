@@ -21,7 +21,8 @@ export const FOUNDER = {
 } as const;
 
 export const CONTACT = {
-  email: "jason@coaibakersfield.com",
+  email: "jasonm@coaibakersfield.com",
+  secondaryEmail: "frankh@coaibakersfield.com",
   phoneDisplay: "(661) 569-4244",
   phoneE164: "+16615694244",
   addressLine: "1712 19th St #216",

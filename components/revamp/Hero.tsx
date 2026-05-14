@@ -14,13 +14,13 @@ export function Hero({ onNavigate }: HeroProps) {
       <div className="container hero-inner">
         <div className="hero-left">
           <div className="hero-pill">
-            Bakersfield, CA · Since 2024
+            Based in Bakersfield, CA · Serving the U.S.
           </div>
           <h1 className="hero-h1">
-            Websites, AI automation &amp; tech support for <span className="highlight">Bakersfield tradesmen.</span>
+            Websites, AI automation &amp; tech support for <span className="highlight">tradesmen &amp; small businesses.</span>
           </h1>
           <p className="hero-sub">
-            <strong>Chaotically Organized AI</strong> builds sovereign websites you own, sets up AI that answers your missed calls, and fixes computers — all without the jargon or the runaround. Local, honest, and priced straight.
+            <strong>Chaotically Organized AI</strong> builds sovereign websites you own, sets up AI that answers your missed calls, and fixes computers — all without the jargon or the runaround. Based in Bakersfield, serving businesses across the U.S.
           </p>
           <div className="hero-actions">
             <a className="btn-primary" onClick={() => onNavigate("intake")} style={{ cursor: "pointer" }}>
@@ -36,12 +36,12 @@ export function Hero({ onNavigate }: HeroProps) {
           <div className="hero-trust">
             <div className="trust-item"><span className="check">✓</span> You own the website — no monthly rental</div>
             <div className="trust-item"><span className="check">✓</span> Clear pricing, no hidden fees</div>
-            <div className="trust-item"><span className="check">✓</span> Built for Bakersfield businesses</div>
+            <div className="trust-item"><span className="check">✓</span> 6+ trade sites already built and live</div>
             <div className="trust-item"><span className="check">✓</span> Phone support — talk to a human</div>
           </div>
           <div className="trust-badges">
             <Image src="/logo.png" alt="COAI" width={24} height={24} style={{ borderRadius: 4, objectFit: "contain" }} />
-            <span className="trust-badge">Serving Bakersfield Since 2024</span>
+            <span className="trust-badge">Based in Bakersfield, CA</span>
             <span className="trust-badge">5★ Google Rated</span>
           </div>
         </div>
@@ -57,9 +57,29 @@ export function Hero({ onNavigate }: HeroProps) {
               <li>Google setup so customers can find you</li>
               <li>Free 20-minute audit to show you what&apos;s broken</li>
             </ul>
-            <div className="video-placeholder">
-              <div className="video-placeholder-icon">▶</div>
-              <div className="video-placeholder-text">Video Hero Coming Soon</div>
+            <div className="hero-lighthouse-input">
+              <p style={{ fontSize: "13px", color: "var(--cream-muted)", marginBottom: "8px", fontWeight: 600 }}>Get your Website X-Ray:</p>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <input
+                  type="url"
+                  placeholder="yourwebsite.com"
+                  style={{
+                    flex: 1, padding: "10px 14px", borderRadius: "8px",
+                    background: "var(--navy)", border: "1px solid var(--navy-border)",
+                    color: "var(--cream)", fontSize: "14px", outline: "none"
+                  }}
+                />
+                <button
+                  onClick={() => onNavigate("intake")}
+                  style={{
+                    padding: "10px 18px", borderRadius: "8px", border: "none",
+                    background: "var(--amber)", color: "var(--navy)",
+                    fontWeight: 700, fontSize: "13px", cursor: "pointer", whiteSpace: "nowrap"
+                  }}
+                >
+                  X-Ray It
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -69,7 +89,7 @@ export function Hero({ onNavigate }: HeroProps) {
         {[
           { num: "50+", label: "Services Offered" },
           { num: "$50", label: "PC Repair Starting Price" },
-          { num: "661", label: "Bakersfield Local" },
+          { num: "6+", label: "Trade Sites Built" },
           { num: "100%", label: "You Own What We Build" },
         ].map((s, i) => (
           <div key={i} className="stat-item">

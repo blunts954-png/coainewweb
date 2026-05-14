@@ -1,17 +1,9 @@
 import { NextResponse } from "next/server";
 import { FORMSPREE_ENDPOINT } from "@/lib/forms";
-import { getMessagingProvider } from "@/lib/messaging/sms-service";
 import { getClientIp, hasJsonContentType, isSameSiteRequest } from "@/lib/security/request-guards";
 import { verifyTurnstileToken } from "@/lib/turnstile/verify";
 import { takeRateLimitToken } from "@/lib/utils/rate-limit";
 import { intakeSubmissionSchema } from "@/lib/validators/intake";
-
-function toSmsPhone(raw: string): string | null {
-  const digits = raw.replace(/\D/g, "");
-  if (digits.length === 10) return `+1${digits}`;
-  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
-  return null;
-}
 
 export async function POST(request: Request) {
   try {
@@ -56,21 +48,6 @@ export async function POST(request: Request) {
 
     if (!fr.ok) {
       return NextResponse.json({ error: "Form delivery failed." }, { status: 502 });
-    }
-
-    const smsTo = toSmsPhone(parsed.phone);
-    if (smsTo) {
-      const provider = getMessagingProvider();
-      const message = `Got it${parsed.first_name ? `, ${parsed.first_name}` : ""} — Jason from COAI will follow up within 2 hours. Questions? Reply here or call (661) 569-4244.`;
-      void provider
-        .sendSms({
-          to: smsTo,
-          leadId: parsed.intake_session_id || `intake-${Date.now()}`,
-          body: message
-        })
-        .catch(() => {
-          // Non-blocking by design: form submission should still succeed.
-        });
     }
 
     return NextResponse.json({ ok: true });

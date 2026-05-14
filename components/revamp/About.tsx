@@ -52,7 +52,7 @@ const STORY = [
 const STACK = [
   { label: "Web Framework", value: "Next.js 15 · Sovereign HTML" },
   { label: "AI Stack", value: "GPT-4o · Claude · Gemini · Llama 3.2" },
-  { label: "Automation", value: "Make.com · Vapi · Twilio A2P" },
+  { label: "Automation", value: "Make.com · Vapi" },
   { label: "Database", value: "Supabase · Airtable" },
   { label: "Deployment", value: "Vercel · Railway · Netlify" },
   { label: "Local AI", value: "Ollama + CrewAI on Resistance Core" }
@@ -110,7 +110,7 @@ export function About({ onNavigate }: AboutProps) {
                   {[
                     ["Location", "Bakersfield, CA · 661"],
                     ["Experience", "15+ Years in Operations"],
-                    ["Email", "jason@coaibakersfield.com"],
+                    ["Email", "jasonm@coaibakersfield.com"],
                     ["Direct Line", "(661) 569-4244"],
                     ["Focus", "661 Market & Beyond"],
                     ["Philosophy", "Everything is Real Estate"]

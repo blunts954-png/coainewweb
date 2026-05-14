@@ -27,7 +27,7 @@ export function Footer({ onNavigate }: FooterProps) {
             1712 19th St #216<br />
             Bakersfield, CA 93301<br />
             <a href="tel:6615694244">(661) 569-4244</a><br />
-            <a href="mailto:jason@coaibakersfield.com">jason@coaibakersfield.com</a>
+            <a href="mailto:jasonm@coaibakersfield.com">jasonm@coaibakersfield.com</a>
           </address>
           <div style={{ marginTop: "12px" }}>
             <a href="https://leadshield.live" target="_blank" rel="noopener noreferrer" style={{ color: "var(--cream-dim)", fontSize: "13px", marginRight: "16px" }}>LeadShield</a>

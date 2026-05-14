@@ -34,7 +34,8 @@ export function Contact() {
             </div>
             <div>
               <div style={{ fontSize: ".7rem", fontWeight: 800, color: "var(--text-muted2)", textTransform: "uppercase", letterSpacing: "1px", marginBottom: "8px" }}>Email</div>
-              <a href="mailto:jason@coaibakersfield.com" style={{ fontSize: "1.2rem", fontWeight: 700, color: "#fff" }}>jason@coaibakersfield.com</a>
+              <a href="mailto:jasonm@coaibakersfield.com" style={{ fontSize: "1.2rem", fontWeight: 700, color: "#fff" }}>jasonm@coaibakersfield.com</a><br/>
+              <a href="mailto:frankh@coaibakersfield.com" style={{ fontSize: "1rem", fontWeight: 600, color: "var(--cream-muted)" }}>frankh@coaibakersfield.com</a>
             </div>
             <div style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px", padding: "24px", display: "flex", flexDirection: "column", gap: "12px" }}>
               {["No high-pressure sales", "Clear scope before any contract", "Free diagnostic, always"].map(t => (
@@ -51,13 +52,13 @@ export function Contact() {
               <div style={{ textAlign: "center", padding: "40px 0" }}>
                 <div style={{ width: "64px", height: "64px", background: "rgba(232,160,32,0.1)", border: "1px solid rgba(232,160,32,0.25)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", color: "var(--accent)", margin: "0 auto 20px" }}>✓</div>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: 800, color: "#fff", marginBottom: "12px" }}>Message Received</h2>
-                <p style={{ fontSize: ".9rem", color: "var(--text-soft)", lineHeight: 1.6, marginBottom: "24px" }}>Jason will respond same business day. Data has been routed to <strong>chaoticallyorganizedai@gmail.com</strong>. If it&apos;s urgent, call (661) 569-4244.</p>
+                <p style={{ fontSize: ".9rem", color: "var(--text-soft)", lineHeight: 1.6, marginBottom: "24px" }}>Jason will respond same business day. Data has been routed to <strong>jasonm@coaibakersfield.com</strong> &amp; <strong>frankh@coaibakersfield.com</strong>. If it&apos;s urgent, call (661) 569-4244.</p>
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: ".7rem", background: "rgba(232,160,32,0.1)", border: "1px solid rgba(232,160,32,0.22)", color: "#E8A020", padding: "4px 12px", borderRadius: 4, letterSpacing: 1, fontWeight: 700 }}>QUEUED</span>
               </div>
             ) : (
               <>
                 <h2 style={{ fontSize: "1.4rem", fontWeight: 800, color: "#fff", marginBottom: "8px" }}>Send a Message</h2>
-                <p style={{ fontSize: ".85rem", color: "var(--text-muted)", marginBottom: "32px" }}>Submissions go to jason@coaibakersfield.com. Jason responds same business day.</p>
+                <p style={{ fontSize: ".85rem", color: "var(--text-muted)", marginBottom: "32px" }}>Submissions go to jasonm@coaibakersfield.com &amp; frankh@coaibakersfield.com. Jason responds same business day.</p>
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                     <div className="field-group">
@@ -101,7 +102,7 @@ export function Contact() {
                   <button type="submit" className="btn-primary" style={{ width: "100%", justifyContent: "center" }}>Send Message →</button>
                   <p style={{ textAlign: "center", fontSize: ".72rem", color: "var(--text-muted2)", marginTop: "12px" }}>
                     Or skip the form — call (661) 569-4244 directly.<br/>
-                    Data routed to: chaoticallyorganizedai@gmail.com
+                    Data routed to: jasonm@coaibakersfield.com &amp; frankh@coaibakersfield.com
                   </p>
                 </form>
               </>
