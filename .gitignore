@@ -34,7 +34,10 @@ Untitled
 # Test coverage output
 coverage/
 
-# Claude worktrees (local submodules).claude/worktrees/
+# Claude worktrees (local submodules)
+.claude/worktrees/
+.claude/worktrees/**
 
 tsconfig.tsbuildinfo
-public/*.png
+# Local images / user uploads (keep individual PNGs tracked if intentional)
+public/uploads/

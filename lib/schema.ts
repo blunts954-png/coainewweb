@@ -12,7 +12,9 @@ import {
   SAME_AS,
   SITE_URL,
   AREA_SERVED,
-  WEBSITE_ID
+  WEBSITE_ID,
+  SERVED_CITIES,
+  type CitySlug
 } from "./site";
 
 export function organizationJsonLd() {
@@ -127,6 +129,41 @@ export function serviceJsonLd(serviceName: string, description: string, path?: s
       priceSpecification: {
         "@type": "PriceSpecification",
         minPrice: 1200,
+        maxPrice: 2000,
+        priceCurrency: "USD"
+      }
+    }
+  };
+}
+
+/** Generate Service schema scoped to a specific city — for location pages. */
+export function localServiceJsonLd(slug: CitySlug) {
+  const city = SERVED_CITIES[slug];
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${city.name} website design services`,
+    description: city.serviceDesc,
+    serviceType: "Website Design",
+    provider: { "@id": ORG_ID },
+    areaServed: [
+      {
+        "@type": "City",
+        name: city.name,
+        address: { "@type": "PostalAddress", addressRegion: city.region, addressCountry: "US" }
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Kern County",
+        address: { "@type": "PostalAddress", addressRegion: "CA", addressCountry: "US" }
+      }
+    ],
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: 600,
         maxPrice: 2000,
         priceCurrency: "USD"
       }

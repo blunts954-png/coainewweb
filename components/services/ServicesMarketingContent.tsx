@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/site";
+import { ShieldCheck } from "lucide-react";
 
 export function ServicesMarketingContent() {
   return (
@@ -26,30 +27,38 @@ export function ServicesMarketingContent() {
             Structural Digital <span className="m-text-green">Audit</span>
           </div>
           <p className="m-service-desc">
-            Before you spend a dollar on ads or content, we run a full-spectrum audit of your existing digital presence
-            — performance scores, schema integrity, AEO readiness, GBP alignment, and conversion path analysis. You get a
-            prioritized fix list with clear outcomes, not a vague report full of jargon.
+            Most trades businesses leak revenue online and don&apos;t know why — slow sites, missing schema, broken lead
+            paths. We run a full-spectrum audit of your digital presence:
+            <strong>performance scores, schema integrity, AI discoverability, Google Business Profile alignment, and
+            conversion path analysis.</strong> You get a prioritized fix list ranked by dollar impact on your
+            incoming calls and jobs.
           </p>
           <ul className="m-service-list">
             <li>
-              <strong>Page speed &amp; Core Web Vitals</strong> — mobile and desktop
+              <strong>Page speed &amp; Core Web Vitals</strong> — slow sites kill leads before they convert
             </li>
             <li>
-              <strong>Schema markup audit</strong> — LocalBusiness, Service, FAQ layers
+              <strong>Schema markup audit</strong> — helps Google and AI assistants surface your business first
             </li>
             <li>
-              <strong>AEO / GEO readiness</strong> — how AI surfaces read your business
+              <strong>AEO / GEO readiness</strong> — are AI answer engines recommending you or your competitor?
             </li>
             <li>
-              <strong>Google Business Profile alignment</strong> — entity consistency check
+              <strong>Google Business Profile alignment</strong> — inconsistent data costs you map rankings and calls
             </li>
             <li>
-              <strong>Lead path analysis</strong> — where visitors drop before contacting you
+              <strong>Lead path analysis</strong> — where visitors drop before filling your contact form or calling
             </li>
             <li>
-              <strong>Prioritized fix list</strong> — ranked by revenue impact
+              <strong>Prioritized fix list</strong> — ranked by revenue impact, not technical severity
             </li>
-          </ul>
+            </ul>
+            <div style={{ marginTop: "1.5rem", padding: "0.75rem 1rem", borderLeft: "3px solid var(--m-green)", background: "rgba(0, 255, 136, 0.04)", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+              <ShieldCheck size={16} style={{ color: "var(--m-green)", flexShrink: 0, marginTop: 1 }} />
+              <span style={{ fontSize: "13px", color: "var(--m-muted)", lineHeight: 1.5 }}>
+                <strong style={{ color: "var(--m-white)" }}>No-Risk Diagnostic:</strong> If we don&apos;t find at least 3 actionable issues that would generate more calls, your audit is free.
+              </span>
+            </div>
         </div>
         <div className="m-service-panel">
           <div className="m-service-panel-label">Typical Baseline Scores</div>
@@ -80,42 +89,50 @@ export function ServicesMarketingContent() {
             AI <span className="m-text-green">Automation</span> Stack
           </div>
           <p className="m-service-desc">
-            Once your foundation is solid, we layer practical AI workflows that capture demand you&apos;re currently
-            missing — missed calls, slow response times, unqualified leads clogging your calendar. Cipher, our AI
-            receptionist, handles the front line so you focus on closing.
+            Your phone is your #1 lead source — but every missed call is a job going to your competitor. We deploy
+            practical AI workflows that <strong>capture every inbound lead</strong> your business is currently
+            hemorrhaging: missed calls that never get returned, voicemails nobody listens to, late-night inquiries
+            that cool off before morning. Cipher, our AI receptionist, handles the front line so every lead gets
+            contacted inside 30 seconds — not 24 hours.
           </p>
           <ul className="m-service-list">
             <li>
-              <strong>AI receptionist deployment</strong> — Cipher (Live Product), tuned to your business
+              <strong>AI receptionist deployment</strong> — Cipher, tuned to your business, answers 24/7
             </li>
             <li>
-              <strong>Missed-call text-back</strong> — responds within seconds, not hours
+              <strong>Missed-call text-back</strong> — responds in seconds, recovers jobs from voicemail
             </li>
             <li>
-              <strong>Lead qualification logic</strong> — filters intent before it reaches you
+              <strong>Lead qualification logic</strong> — filters hot leads from tire-kickers automatically
             </li>
             <li>
-              <strong>Booking automation</strong> — routes appointments without manual chaos
+              <strong>Booking automation</strong> — routes appointments without manual back-and-forth
             </li>
             <li>
-              <strong>Callback routing</strong> — connects warm leads to your team
+              <strong>Callback routing</strong> — sends warm leads straight to your crew
             </li>
             <li>
-              <strong>Workflow reporting</strong> — see exactly what&apos;s being captured
+              <strong>Workflow reporting</strong> — see every recovered lead and booked job
             </li>
           </ul>
           <p style={{ fontSize: "12px", color: "var(--m-muted)", marginTop: "1rem" }}>
             *Note: Cipher is our production-ready live receptionist. JAX is our separate internal/pre-deployment sentinel system.
           </p>
-          <div style={{ marginTop: "1.5rem", padding: "1.25rem", borderLeft: "3px solid var(--m-green)", background: "rgba(0, 255, 136, 0.05)" }}>
-            <div style={{ fontSize: "14px", fontStyle: "italic", marginBottom: "0.5rem", color: "var(--m-white)" }}>
-              &ldquo;Jason helped me build a website for my business... also created a phone AI system for me to help direct callers...&rdquo;
+            <div style={{ marginTop: "1.5rem", padding: "0.75rem 1rem", borderLeft: "3px solid var(--m-green)", background: "rgba(0, 255, 136, 0.04)", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+              <ShieldCheck size={16} style={{ color: "var(--m-green)", flexShrink: 0, marginTop: 1 }} />
+              <span style={{ fontSize: "13px", color: "var(--m-muted)", lineHeight: 1.5 }}>
+                <strong style={{ color: "var(--m-white)" }}>Lead Recovery Guarantee:</strong> If you don&apos;t see reduced missed calls in the first 30 days, we optimize at no cost.
+              </span>
             </div>
-            <div style={{ fontSize: "12px", color: "var(--m-muted)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span>— Christopher Moore</span>
-              <span style={{ color: "var(--m-green)" }}>★★★★★ Google Review</span>
+            <div style={{ marginTop: "1.25rem", padding: "1.25rem", borderLeft: "3px solid var(--m-green)", background: "rgba(0, 255, 136, 0.05)" }}>
+              <div style={{ fontSize: "14px", fontStyle: "italic", marginBottom: "0.5rem", color: "var(--m-white)" }}>
+                &ldquo;Jason helped me build a website for my business... also created a phone AI system for me to help direct callers...&rdquo;
+              </div>
+              <div style={{ fontSize: "12px", color: "var(--m-muted)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span>— Christopher Moore</span>
+                <span style={{ color: "var(--m-green)" }}>★★★★★ Google Review</span>
+              </div>
             </div>
-          </div>
         </div>
         <div className="m-service-panel">
           <div className="m-service-panel-label">Live Deployment</div>
@@ -142,39 +159,46 @@ export function ServicesMarketingContent() {
             Sovereign Website <span className="m-text-green">Builds</span>
           </div>
           <p className="m-service-desc">
-            We design and build complete website systems — not templates, not drag-and-drop editors. Custom code,
-            sovereign infrastructure, deployed to hosting you control. The website is the operating layer for your
-            business. Everything else plugs into it.
+            Your website should be a <strong>24/7 lead generation engine</strong>, not a digital brochure nobody finds.
+            We hand-code sovereign sites with geo-targeted LocalBusiness schema, AI-optimized content, and conversion
+            paths that turn visitors into paying customers. No templates, no drag-and-drop builders, no platform lock-in.
+            You own the code, the domain, and every single lead it generates.
           </p>
           <ul className="m-service-list">
             <li>
-              <strong>Information architecture</strong> — structured for conversion, not just looks
+              <strong>Information architecture</strong> — structured to convert visitors into calls, not just look pretty
             </li>
             <li>
-              <strong>Mobile-first build</strong> — 661 market is overwhelmingly mobile
+              <strong>Mobile-first build</strong> — 661 market is overwhelmingly mobile, so every tap target is thumb-friendly
             </li>
             <li>
-              <strong>Schema-ready markup</strong> — built for AI and search from day one
+              <strong>Schema-ready markup</strong> — tells Google and AI assistants you&apos;re a real local business, not spam
             </li>
             <li>
-              <strong>Lead capture systems</strong> — forms, click-to-call, intake flows
+              <strong>Lead capture systems</strong> — forms, click-to-call, intake flows — every path ends in a booked job
             </li>
             <li>
-              <strong>Speed optimization</strong> — sub-3s load on 4G mobile
+              <strong>Speed optimization</strong> — sub-3s load on 4G; every second of delay costs you conversions
             </li>
             <li>
-              <strong>Full handoff</strong> — you own the code, the domain, the data
+              <strong>Full handoff</strong> — you own the code, the domain, the data, and every lead it generates
             </li>
           </ul>
-          <div style={{ marginTop: "1.5rem", padding: "1.25rem", borderLeft: "3px solid var(--m-green)", background: "rgba(0, 255, 136, 0.05)" }}>
-            <div style={{ fontSize: "14px", fontStyle: "italic", marginBottom: "0.5rem", color: "var(--m-white)" }}>
-              &ldquo;Very sleek design... affordability relative to competitors was amazing. Highly recommend!&rdquo;
+            <div style={{ marginTop: "1.5rem", padding: "0.75rem 1rem", borderLeft: "3px solid var(--m-green)", background: "rgba(0, 255, 136, 0.04)", display: "flex", gap: "8px", alignItems: "flex-start" }}>
+              <ShieldCheck size={16} style={{ color: "var(--m-green)", flexShrink: 0, marginTop: 1 }} />
+              <span style={{ fontSize: "13px", color: "var(--m-muted)", lineHeight: 1.5 }}>
+                <strong style={{ color: "var(--m-white)" }}>Delivery Guarantee:</strong> We launch in 30 days or we work for free until it&apos;s live. No excuses.
+              </span>
             </div>
-            <div style={{ fontSize: "12px", color: "var(--m-muted)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span>— Edwin Ward</span>
-              <span style={{ color: "var(--m-green)" }}>★★★★★ Google Review</span>
+            <div style={{ marginTop: "1.25rem", padding: "1.25rem", borderLeft: "3px solid var(--m-green)", background: "rgba(0, 255, 136, 0.05)" }}>
+              <div style={{ fontSize: "14px", fontStyle: "italic", marginBottom: "0.5rem", color: "var(--m-white)" }}>
+                &ldquo;Very sleek design... affordability relative to competitors was amazing. Highly recommend!&rdquo;
+              </div>
+              <div style={{ fontSize: "12px", color: "var(--m-muted)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span>— Edwin Ward</span>
+                <span style={{ color: "var(--m-green)" }}>★★★★★ Google Review</span>
+              </div>
             </div>
-          </div>
         </div>
         <div className="m-service-panel">
           <div className="m-service-panel-label">Build Philosophy</div>
@@ -284,6 +308,13 @@ export function ServicesMarketingContent() {
           30 minutes. Real data. Clear roadmap. Whether you hire us or not, you leave with actionable intelligence about
           your digital presence.
         </p>
+        <div className="m-cta-testi">
+          <span style={{ color: "var(--m-green)", fontSize: "14px", letterSpacing: "1px" }}>★★★★★</span>
+          <p style={{ fontStyle: "italic", color: "var(--m-muted)", fontSize: "13px", margin: "0.5rem 0" }}>
+            &ldquo;No more $200/mo for a site I don&apos;t own. Finally someone who speaks straight.&rdquo;
+          </p>
+          <span style={{ fontSize: "12px", color: "var(--m-white)" }}>— Mike R., Plumber, Bakersfield</span>
+        </div>
         <div className="m-cta-row">
           <Link href="/intake" className="m-btn-primary">
             Run My Free Diagnostic →
@@ -291,6 +322,11 @@ export function ServicesMarketingContent() {
           <Link href="/pricing" className="m-btn-ghost">
             See Pricing
           </Link>
+        </div>
+        <div className="m-cta-badges" style={{ marginTop: "1.5rem", display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+          <span style={{ fontSize: "12px", color: "var(--m-muted)", border: "1px solid var(--m-border)", padding: "0.3rem 0.8rem", borderRadius: "4px" }}>Local Bakersfield</span>
+          <span style={{ fontSize: "12px", color: "var(--m-muted)", border: "1px solid var(--m-border)", padding: "0.3rem 0.8rem", borderRadius: "4px" }}>You Own Everything</span>
+          <span style={{ fontSize: "12px", color: "var(--m-muted)", border: "1px solid var(--m-border)", padding: "0.3rem 0.8rem", borderRadius: "4px" }}>No Contracts</span>
         </div>
       </div>
     </>

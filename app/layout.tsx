@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Space_Grotesk, Syne, Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
+import { JetBrains_Mono, Syne, Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import { headers } from "next/headers";
 import type { ReactNode } from "react";
@@ -15,12 +15,6 @@ import "./globals.css";
 import "./landing-page.css";
 import "./marketing-inner.css";
 import "./revamp.css";
-
-const bodySans = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap"
-});
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
@@ -75,7 +69,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const nonce = (await headers()).get("x-nonce") ?? "";
   return (
     <html lang="en">
-      <body className={`${bodySans.variable} ${mono.variable} ${headline.variable} ${plusJakarta.variable} ${dmSans.variable}`}>
+      <body className={`${mono.variable} ${headline.variable} ${plusJakarta.variable} ${dmSans.variable}`}>
         {GA_MEASUREMENT_ID ? (
           <>
             <Script
@@ -93,6 +87,14 @@ gtag('config', '${GA_MEASUREMENT_ID}', { send_page_view: true });`}
             <AnalyticsRouteTracker />
           </>
         ) : null}
+        <Script id="speculation-rules" strategy="afterInteractive" nonce={nonce}>
+          {`{
+  "prerender": [{
+    "where": { "href_matches": "/*" },
+    "eagerness": "moderate"
+  }]
+}`}
+        </Script>
         <NeuralMesh />
         <div className="scanline-overlay" aria-hidden="true" />
         <JsonLd data={organizationJsonLd()} />

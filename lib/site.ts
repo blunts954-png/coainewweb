@@ -100,3 +100,27 @@ export const AREA_SERVED = [
   { "@type": "AdministrativeArea", name: "California", address: { "@type": "PostalAddress", addressCountry: "US" } },
   { "@type": "Country", name: "United States" }
 ] as const;
+
+/** Cities actively served — used for city-specific schema and location pages. */
+const cityData = {
+  bakersfield: {
+    name: "Bakersfield", region: "CA", slug: "bakersfield",
+    ticker: ["BAKERSFIELD WEB DESIGN", "LOCAL SEO", "AEO READY", "SCHEMA", "SOVEREIGN BUILDS"] as string[],
+    description: "Conversion-first websites with local schema, fast mobile performance, and full ownership for Bakersfield service businesses.",
+    serviceDesc: "Website design and local search architecture for Bakersfield businesses that need faster conversion and clearer trust signals."
+  },
+  delano: {
+    name: "Delano", region: "CA", slug: "delano",
+    ticker: ["DELANO WEB DESIGN", "LOCAL LEAD FLOW", "SCHEMA", "MOBILE SPEED", "KERN COUNTY"] as string[],
+    description: "Delano websites focused on local lead conversion, mobile speed, and entity schema for better Google and AI visibility.",
+    serviceDesc: "Website design and local search architecture for Delano businesses that need more calls, form submissions, and clear trust signals."
+  },
+  shafter: {
+    name: "Shafter", region: "CA", slug: "shafter",
+    ticker: ["SHAFTER WEB DESIGN", "CONVERSION UX", "LOCAL VISIBILITY", "MOBILE-FIRST", "KERN COUNTY"] as string[],
+    description: "Shafter website design for local service businesses: high-speed mobile pages, cleaner conversion UX, and structured local trust signals.",
+    serviceDesc: "Website design, schema implementation, and conversion architecture for Shafter businesses that need stronger local lead flow."
+  }
+};
+export const SERVED_CITIES: { [K in keyof typeof cityData]: typeof cityData[K] } = cityData;
+export type CitySlug = keyof typeof cityData;

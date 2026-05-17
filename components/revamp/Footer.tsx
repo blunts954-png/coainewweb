@@ -57,6 +57,12 @@ export function Footer({ onNavigate }: FooterProps) {
           Book Your Free Audit - 20 Minutes, No Pressure
         </a>
       </div>
+      <div className="footer-trust-row container">
+        <span className="trust-badge" style={{ color: "var(--cream-dim)" }}>Local Bakersfield Business</span>
+        <span className="trust-badge" style={{ color: "var(--cream-dim)" }}>Sovereign Infrastructure</span>
+        <span className="trust-badge" style={{ color: "var(--cream-dim)" }}>No Platform Lock-In</span>
+        <span className="trust-badge" style={{ color: "var(--cream-dim)" }}>You Own the Code</span>
+      </div>
       <div className="footer-bottom container">
         <p>
           &copy; 2026 Chaotically Organized AI, LLC &middot; Bakersfield, CA

@@ -67,12 +67,12 @@ export function Hero({ onNavigate }: HeroProps) {
           <div className="hero-pill">
             Based in Bakersfield, CA · Serving the U.S.
           </div>
-          <h1 className="hero-h1">
-            Websites, AI automation &amp; tech support for <span className="highlight">tradesmen &amp; small businesses.</span>
-          </h1>
-          <p className="hero-sub">
-            <strong>Chaotically Organized AI</strong> builds sovereign websites you own, sets up AI that answers your missed calls, and fixes computers — all without the jargon or the runaround. Based in Bakersfield, serving businesses across the U.S.
-          </p>
+           <h1 className="hero-h1">
+             Get More Job Calls Without Increasing Your Ad Spend
+           </h1>
+           <p className="hero-sub">
+             <strong>Chaotically Organized AI</strong> builds complete digital lead systems for trades businesses — sovereign websites you own, AI that captures missed calls, and SEO that puts you at the top of Google Maps. No jargon, no contracts, just more jobs.
+           </p>
           <div className="hero-actions">
             <a className="btn-primary" onClick={() => onNavigate("intake")} style={{ cursor: "pointer" }}>
               Get Your Free Digital Audit <ArrowRight size={16} aria-hidden="true" />

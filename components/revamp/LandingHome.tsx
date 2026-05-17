@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ArrowRight, CalendarDays, Shield, Zap, Search } from "lucide-react";
 import { Nav } from "./Nav";
 import { Hero } from "./Hero";
+import { GuaranteeBadge } from "./GuaranteeBadge";
 import { Footer } from "./Footer";
 import { Portfolio } from "./Portfolio";
 import { About } from "./About";
@@ -18,42 +19,42 @@ import { Splash } from "./Splash";
 const products = [
   {
     icon: Shield,
-    tag: "Missed Call Recovery",
+    tag: "Get More Calls",
     name: "LeadShield",
-    desc: "Never lose a lead to a missed call again. LeadShield instantly texts every missed caller back, scores them HOT/WARM/COLD, and re-engages cold leads automatically.",
+    desc: "Stop losing jobs to voicemail. LeadShield instantly texts every missed caller back, scores them HOT/WARM/COLD, and re-engages cold leads automatically. One HVAC contractor recovered 12+ new jobs in the first week.",
     features: [
       "Auto-texts missed callers in seconds",
-      "Lead scoring — know who to call first",
+      "Lead scoring — call the hot leads first",
       "Automated follow-up sequences",
-      "No setup fees, works with your existing number",
+      "Works with your existing phone number",
     ],
-    cta: "Learn More",
+    cta: "Recover Missed Calls",
   },
   {
     icon: Zap,
-    tag: "Full Service Agency",
+    tag: "Rank Higher, Get Found",
     name: "COAI",
-    desc: "Sovereign websites, AI automation, and digital strategy. We build everything you own outright — no platform lock-in, no monthly builder tax, no nonsense.",
+    desc: "Generate consistent job leads with a custom website built for trades. We hand-code sovereign sites with geo-targeted schema and AI-optimized content that ranks on Google Maps and surfaces in AI search results. No Wix, no WordPress, no monthly tax.",
     features: [
-      "Custom-coded websites you fully own",
+      "Custom-coded website you fully own",
       "AI receptionist (Cipher) answers calls 24/7",
-      "SEO, AEO & GEO — show up everywhere",
-      "Google Business Profile optimization",
+      "Local SEO that ranks on Google Maps",
+      "Schema markup built for AI search visibility",
     ],
-    cta: "Explore Services",
+    cta: "Build My Lead System",
   },
   {
     icon: Search,
-    tag: "Website Diagnostics",
+    tag: "Find Revenue Leaks",
     name: "SiteER",
-    desc: "60-second website audit that grades your site A–F, tells you exactly how much revenue you're leaking, and gives you a treatment plan to fix it.",
+    desc: "See exactly where you're losing calls and jobs online. Free 60-second scan grades your site A–F on performance, schema, and AI readiness — with a prioritized fix list showing what's leaking revenue from your business.",
     features: [
-      "Full performance & schema audit",
-      "A–F grading with revenue impact",
-      "Prioritized fix list for your developer",
-      "Treatment plans from $500",
+      "Full speed & schema audit in 60 seconds",
+      "A–F grade with dollar revenue impact",
+      "Prioritized fix list for your business",
+      "Treatment plans starting at $500",
     ],
-    cta: "Run a Scan",
+    cta: "See Your Grade",
   },
 ];
 
@@ -161,7 +162,7 @@ export function LandingHomeRevamp() {
                 <h2 className="section-title">Three ways we help you <span className="text-amber">win more jobs.</span></h2>
                 <p className="section-sub">Whether you need a website, lead recovery, or a full tech overhaul — we&apos;ve got you covered under one roof.</p>
                 <div className="services-grid">
-                  {products.map((p) => (
+                  {products.map((p, i) => (
                     <div key={p.name} className="service-card">
                       <div className="service-card-icon" aria-hidden="true">
                         <p.icon size={28} strokeWidth={2.2} />
@@ -175,8 +176,19 @@ export function LandingHomeRevamp() {
                         ))}
                       </ul>
                       <span className="service-card-cta">{p.cta} <ArrowRight size={16} aria-hidden="true" /></span>
+                      {i === 1 && (
+                        <div className="service-testi-inline">
+                          <span className="service-testi-stars" aria-label="5 out of 5 stars">★★★★★</span>
+                          <p>&ldquo;COAI rebuilt it and I&apos;m actually getting calls now.&rdquo; — <strong>Tony M., Electrician</strong></p>
+                        </div>
+                      )}
                     </div>
                   ))}
+                </div>
+                <div className="guarantee-row">
+                  <GuaranteeBadge type="audit" compact />
+                  <GuaranteeBadge type="build" compact />
+                  <GuaranteeBadge type="automation" compact />
                 </div>
               </div>
             </section>
@@ -224,6 +236,10 @@ export function LandingHomeRevamp() {
                   </div>
                 ))}
               </div>
+              <div style={{ display: "flex", justifyContent: "center", gap: "16px", flexWrap: "wrap", marginTop: "40px" }}>
+                <GuaranteeBadge type="audit" />
+                <GuaranteeBadge type="build" />
+              </div>
             </section>
 
             {/* Comprehensive Services Grid */}
@@ -256,6 +272,21 @@ export function LandingHomeRevamp() {
                 <span className="section-eyebrow" style={{ justifyContent: "center", display: "block", textAlign: "center" }}>Start Here — Free</span>
                 <h2>Ready to stop guessing<br />and <span className="text-amber">start getting calls?</span></h2>
                 <p>Free 20-minute digital audit. We check your site speed, Google profile, schema, and lead flow — and hand you a written report. No pitch, no pressure, just the truth.</p>
+                <div className="final-cta-social">
+                  <div className="final-cta-testi">
+                    <span className="testi-stars" aria-label="5 out of 5 stars">★★★★★</span>
+                    <p>&ldquo;The missed-call text-back alone paid for itself in the first week. I was losing jobs to voicemail and didn&apos;t even know it.&rdquo;</p>
+                    <span className="testi-attribution">— David T., HVAC Contractor, Kern County</span>
+                  </div>
+                  <div className="final-cta-badges">
+                    <span className="trust-badge">Local Bakersfield Owners</span>
+                    <span className="trust-badge">Sovereign — You Own It</span>
+                    <span className="trust-badge">No Contracts</span>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap", marginTop: "20px" }}>
+                    <GuaranteeBadge type="audit" compact />
+                  </div>
+                </div>
                 <a href="tel:6615694244" className="cta-phone">(661) 569-4244</a>
                 <div className="final-cta-actions">
                   <a className="btn-primary" onClick={() => navigate("intake")} style={{ cursor: "pointer" }}>Get My Free Audit <ArrowRight size={16} aria-hidden="true" /></a>

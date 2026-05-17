@@ -13,7 +13,7 @@ declare const google: {
   };
 };
 
-const MAP_API_KEY = "AIzaSyCaN0oGOG3Gbndt8sH-lSo6UD0I87hqKCs";
+const MAP_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "AIzaSyCaN0oGOG3Gbndt8sH-lSo6UD0I87hqKCs";
 
 export function ServiceAreaMap() {
   const mapRef = useRef<HTMLDivElement>(null);

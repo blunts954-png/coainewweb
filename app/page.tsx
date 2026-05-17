@@ -3,13 +3,13 @@ import { LandingHomeRevamp } from "@/components/revamp/LandingHome";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Chaotically Organized AI — Bakersfield Websites & AI Automation",
+  title: "COAI — Get More Job Calls With a Digital Lead System for Your Trades Business",
   description:
-    "Bakersfield's digital shop for tradesmen and small businesses. Sovereign websites, AI lead automation, computer repair, and honest tech support. No fluff. No contracts. Just stuff that works.",
+    "Stop losing jobs to missed calls and bad websites. COAI builds custom lead systems for trades businesses — websites you own, AI that texts missed callers back, and SEO that puts you on top of Google. Free 20-min audit.",
   openGraph: {
-    title: "Chaotically Organized AI — Bakersfield",
+    title: "COAI — Digital Lead Systems for Trades Businesses",
     description:
-      "Sovereign websites, AI lead automation, computer repair, and honest tech support for Bakersfield tradesmen.",
+      "Get more job calls without increasing your ad spend. Websites you own, AI automation, and SEO that actually works.",
     url: SITE_URL,
   },
 };
