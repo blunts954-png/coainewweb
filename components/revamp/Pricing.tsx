@@ -15,6 +15,64 @@ const PKGS = [
   }
 ];
 
+const BUNDLES = [
+  {
+    name: "Tech Rescue Kit",
+    price: "$299 flat",
+    desc: "Full device triage — computer tune-up, virus sweep, storage cleanup, and OS hardening. In and out, running clean.",
+    features: [
+      "Full diagnostic scan",
+      "Virus & malware removal",
+      "Storage deep-clean + optimization",
+      "OS hardening + startup repair",
+      "30-day follow-up support",
+    ],
+    best: false,
+    sq: "https://square.link/u/iUDRvBOo",
+  },
+  {
+    name: "Trades Starter Pack",
+    price: "$1,497 flat",
+    desc: "Everything a trades or HVAC business needs to look sovereign and capture leads — deployed in one shot.",
+    features: [
+      "Sovereign 1-page web build",
+      "Google Business Profile overhaul",
+      "Schema / AEO injection",
+      "Social media profile cleanup",
+      "Review generation system setup",
+    ],
+    best: false,
+    sq: "https://square.link/u/Xvp6QAHQ",
+  },
+  {
+    name: "AI Lead Machine",
+    price: "$1,997 + $297/mo",
+    desc: "Full autonomous lead capture and follow-up. Built for operators serious about dominating the 661 market.",
+    features: [
+      "Sovereign web build",
+      "AI chatbot embed",
+      "LeadShield missed-call text-back",
+      "Review automation system",
+      "Monthly SEO + analytics report",
+    ],
+    best: true,
+    sq: "https://square.link/u/6X8C4a9M",
+  },
+  {
+    name: "Operational Ecosystem",
+    price: "$1,200 + $197/mo",
+    desc: "Custom sovereign site wired into a full CRM and automated SMS follow-up pipeline.",
+    features: [
+      "Custom HTML/JS site + schema",
+      "LeadShield CRM integration",
+      "Automated missed-call SMS",
+      "Vercel/Netlify hosting setup",
+    ],
+    best: false,
+    sq: "https://square.link/u/D1wnMqJt",
+  },
+];
+
 interface PricingPageProps {
   onNavigate: (page: string) => void;
 }
@@ -30,7 +88,7 @@ export function PricingPage({ onNavigate }: PricingPageProps) {
         </div>
       </section>
       
-      <div className="container" style={{ paddingBottom: 100 }}>
+      <div className="container" style={{ paddingBottom: 60 }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "32px" }}>
           {PKGS.map(p => (
             <div key={p.tier} className="pkg-card" style={{ padding: "0", overflow: "hidden" }}>
@@ -59,6 +117,33 @@ export function PricingPage({ onNavigate }: PricingPageProps) {
           ))}
         </div>
       </div>
+
+      {/* Done-For-You Bundles — Square checkout */}
+      <section style={{ padding: "80px 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div className="container">
+          <span className="section-eyebrow">Instant Checkout Bundles</span>
+          <h2 className="section-title">One price. <span className="text-amber">Everything wired.</span> No decision fatigue.</h2>
+          <p className="section-sub">Pick the bundle that fits. Buy now with Square. No upsells, no hidden fees — just a straight price for a complete solution.</p>
+          <div className="bundles-grid" style={{ marginTop: "40px" }}>
+            {BUNDLES.map((b) => (
+              <div key={b.name} className={`bundle-card${b.best ? " best" : ""}`}>
+                {b.best && <div className="bundle-badge">Best Value</div>}
+                <div className="bundle-name">{b.name}</div>
+                <div className="bundle-price">{b.price}</div>
+                <div className="bundle-desc">{b.desc}</div>
+                <ul className="bundle-list">
+                  {b.features.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+                <a className="bundle-cta" href={b.sq} target="_blank" rel="noopener noreferrer">
+                  Buy Now — {b.price} <ArrowRight size={16} aria-hidden="true" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
